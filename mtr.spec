@@ -35,7 +35,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/usr/{sbin,man/man8}
 make prefix=$RPM_BUILD_ROOT/usr install
 
-gzip -9fn $RPM_BUILD_ROOT/usr/man/man8/* \
+gzip -9fn $RPM_BUILD_ROOT%{_mandir}/man8/* \
 	AUTHORS NEWS README SECURITY
 
 %clean
@@ -46,7 +46,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc *gz img/mtr_icon.xpm
 
 %attr(4755,root,root) /usr/sbin/mtr
-/usr/man/man8/*
+%{_mandir}/man8/*
 
 %changelog
 * Wed Apr  7 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
