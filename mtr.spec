@@ -1,10 +1,12 @@
 Summary:	Matt's Traceroute - network diagnostic tool
+Summary(es):	Herramienta para diagnСstico de red, combinando ping/traceroute
 Summary(pl):	Matt's Traceroute - narzЙdzie do diagnostyki sieci
+Summary(pt_BR):	Ferramenta para diagnСstico da rede, combinando ping/traceroute
 Summary(ru):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Name:		mtr
-Version:	0.49
-Release:	1.5
+Version:	0.50
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -34,6 +36,11 @@ machines, it sends a sequence ICMP ECHO requests to each one to
 determine the quality of the link to each machine. As it does this, it
 prints running statistics about each machine.
 
+%description -l es
+mtr es una herramienta para diagnСstico de la red que combina ping y
+traceroute en un programa. Tiene dos interfaces, una ncurses, Зtil
+para uso en sesiones telnet/ssh y una gtk para uso en el X Window.
+
 %description -l pl
 mtr jest narzЙdziem do diagnostyki sieci, Ё╠cz╠cym funkcje
 traceroute'a oraz pinga. Program ten ╤ledzi trasЙ poЁ╠cznia miЙdzy
@@ -41,6 +48,11 @@ punktem z ktСrego zostaЁ uruchomiony, a punktem docelowym. Po
 skompletowaniu listy punktСw po╤rednich przez ktСre pzrechodz╠ pakiety
 miЙdzy tymi punktami do ka©dego z nich wysyЁane s╠ pakiety ICMP ECHO i
 czasy odpowiedzi s╠ nastЙpnie prezentowane na bie©╠co.
+
+%description -l pt_BR
+O mtr И uma ferramenta para diagnСstico da rede que combina ping e
+traceroute em um programa. Tem duas interfaces, uma ncurses, Зtil para
+uso em sessУes telnet/ssh e uma gtk para uso no X Window.
 
 %description -l ru
 mtr - это traceroute и ping в одном флаконе. При старте mtr исследует
@@ -61,13 +73,15 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 
 %package X11
 Summary:	Matt's Traceroute - network diagnostic tool, X11 version
+Summary(es):	Interface GTK para mtr
 Summary(pl):	Matt's Traceroute - narzЙdzie do diagnostyki sieci, wersja X11
+Summary(pt_BR):	Interface GTK para o mtr
 Summary(ru):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Group:		Networking/Utilities
 Obsoletes:	mtr-gtk
 
-%description -n mtr-X11
+%description X11
 mtr combines the functionaly of the traceroute and ping programs in a
 single network diagnostic tool. As mtr starts, it investigates the
 network connection between the host mtr runs on and the destination.
@@ -76,7 +90,12 @@ machines, it sends a sequence ICMP ECHO requests to each one to
 determine the quality of the link to each machine. As it does this, it
 prints running statistics about each machine.
 
-%description -n mtr-X11 -l pl
+%description X11 -l es
+mtr es una herramienta para diagnСstico de la red que combina ping y
+traceroute en un programa. Tiene dos interfaces, una ncurses, Зtil
+para uso en sesiones telnet/ssh y una gtk para uso en el X Window.
+
+%description X11 -l pl
 mtr jest narzЙdziem do diagnostyki sieci, Ё╠cz╠cym funkcje
 traceroute'a oraz pinga. Program ten ╤ledzi trasЙ poЁ╠cznia miЙdzy
 punktem z ktСrego zostaЁ uruchomiony, a punktem docelowym. Po
@@ -84,7 +103,12 @@ skompletowaniu listy punktСw po╤rednich przez ktСre pzrechodz╠ pakiety
 miЙdzy tymi punktami do ka©dego z nich wysyЁane s╠ pakiety ICMP ECHO i
 czasy odpowiedzi s╠ nastЙpnie prezentowane na bie©╠co.
 
-%description -n mtr-X11 -l ru
+%description X11 -l pt_BR
+O mtr И uma ferramenta para diagnСstico da rede que combina ping e
+traceroute em um programa. Tem duas interfaces, uma ncurses, Зtil para
+uso em sessУes telnet/ssh e uma gtk para uso no X Window.
+
+%description X11 -l ru
 mtr - это traceroute и ping в одном флаконе. При старте mtr исследует
 сетевое соединение между машиной, на которой он запущен, и машиной,
 заданной пользователем. После того, как он определит адреса каждого
@@ -93,7 +117,7 @@ ECHO запросов на каждый из хопов для определения качества линка с
 каждой из машин. По мере того, как он это делает, mtr выводит текущую
 статистику по каждой машине.
 
-%description -n mtr-X11 -l uk
+%description X11 -l uk
 mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 досл╕джу╓ мережеве з'╓днання м╕ж машиною, на як╕й в╕н запущений та
 заданою користувачем. П╕сля визначення адрес кожного хопу м╕ж цими
@@ -120,7 +144,7 @@ automake -a -c -f
 	--enable-ipv6
 
 %{__make}
-mv -f mtr mtr-x11 
+mv -f mtr mtr-x11
 %{__make} clean
 
 %configure \
@@ -131,13 +155,13 @@ mv -f mtr mtr-x11
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/Misc,%{_pixmapsdir},/usr/X11R6/sbin/}
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/Misc,%{_pixmapsdir},%{_prefix}/X11R6/sbin/}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
-install mtr-x11 $RPM_BUILD_ROOT/usr/X11R6/sbin/mtr
+install mtr-x11 $RPM_BUILD_ROOT%{_prefix}/X11R6/sbin/mtr
 
 ln -sf mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
 
