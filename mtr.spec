@@ -51,29 +51,3 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(4711,root,root) %{_sbindir}/mtr
 %{_mandir}/man8/*
-
-%changelog
-* Wed Apr  7 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.34-1]
-- removed patch which restrict use mtr for icmp group.
-
-* Mon Jan 18 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [0.28-2d]
-- changed permission of mtr to 2711, 
-- compressed man pages,
-- compressed %doc,
-- added Group(pl).
-
-* Sat Nov 07 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [0.28-1d]
-- updated to 0.28,
-- added LDFLAGS before ./configure,
-- added URL to Source,
-- minor changes.
-
-* Wed Jul 08 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [0.21-4d]
-- build against glibc-2.1,
-- translation modified for pl,
-- added %changelog,
-- restricted ELF binary permission.
