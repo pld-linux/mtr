@@ -5,8 +5,8 @@ Summary(pt_BR):	Ferramenta para diagnСstico da rede, combinando ping/traceroute
 Summary(ru):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Name:		mtr
-Version:	0.51
-Release:	1
+Version:	0.52
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -14,7 +14,6 @@ Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-resolv.patch
-Patch1:		%{name}-makefile.patch
 #Patch2:	ftp://ftp.kame.net/pub/kame/misc/mtr-045-v6-20020207.diff.gz
 Patch2:		%{name}-0.48-v6-20020306.patch.gz
 Patch3:		%{name}-nogtk.patch
@@ -128,9 +127,8 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+#%patch2 -p1	-- to be fixed
+#%patch3 -p1	-- to be fixed 
 
 %build
 rm -f missing
