@@ -12,7 +12,7 @@ Summary(ru):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Name:		mtr
 Version:	0.65
-Release:	0.1
+Release:	0.2
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -173,20 +173,23 @@ mv -f mtr mtr-gtk
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_sbindir}
 
-%{__make} install-sbinPROGRAMS \
-	DESTDIR=$RPM_BUILD_ROOT
 %{__make} install \
+	sbindir=%{_bindir} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with x}
 install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
-install mtr-gtk $RPM_BUILD_ROOT%{_sbindir}
+install mtr-gtk $RPM_BUILD_ROOT%{_bindir}
+ln -sf %{_bindir}/mtr-gtk $RPM_BUILD_ROOT%{_sbindir}
 %endif
 
-ln -sf mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
+ln -sf %{_bindir}/mtr $RPM_BUILD_ROOT%{_sbindir}/mtr
+ln -sf %{_bindir}/mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
+ln -sf mtr $RPM_BUILD_ROOT%{_bindir}/mtr6
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -194,14 +197,17 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README SECURITY
-%attr(4754,root,adm) %{_sbindir}/mtr
-%attr(4754,root,adm) %{_sbindir}/mtr6
+%attr(4754,root,adm) %{_bindir}/mtr
+%attr(4754,root,adm) %{_bindir}/mtr6
+%{_sbindir}/mtr
+%{_sbindir}/mtr6
 %{_mandir}/man8/*
 
 %if %{with x}
 %files X11
 %defattr(644,root,root,755)
-%attr(4754,root,adm) %{_sbindir}/mtr-gtk
+%attr(4754,root,adm) %{_bindir}/mtr-gtk
+%{_sbindir}/mtr-gtk
 %{_desktopdir}/mtr.desktop
 %{_pixmapsdir}/mtr.png
 %endif
