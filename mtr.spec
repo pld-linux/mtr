@@ -165,14 +165,12 @@ install mtr-x11 $RPM_BUILD_ROOT%{_prefix}/X11R6/sbin/mtr
 
 ln -sf mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
 
-gzip -9nf AUTHORS NEWS README SECURITY
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *gz
+%doc AUTHORS NEWS README SECURITY
 %attr(4754,root,adm) %{_sbindir}/mtr
 %attr(4754,root,adm) %{_sbindir}/mtr6
 %{_mandir}/man8/*
