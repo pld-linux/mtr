@@ -2,7 +2,8 @@
 Name=Traceroute
 Type=Application
 Comment=Matt's Traceroute - network diagnostic tool
-Comment[pl]=Matt's Traceroute - narzêdzie do diagnostyki sieci
+Comment[pl]=Traceroute Matta - narzÄ™dzie do diagnostyki sieci
 Exec=mtr
 Icon=mtr.png
 Terminal=false
+# vi: encoding=utf-8
