@@ -17,12 +17,12 @@ Patch1:		%{name}-makefile.patch
 Patch2:		%{name}-0.48-v6-20020306.patch.gz
 Patch3:		%{name}-nogtk.patch
 Icon:		mtr.xpm
+URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gtk+-devel
 BuildRequires:	ncurses-devel >= 5.2
-URL:		http://www.bitwizard.nl/mtr/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Obsoletes:	mtr-gtk
 Obsoletes:	mtr-ncurses
 
 %description
@@ -36,7 +36,7 @@ prints running statistics about each machine.
 
 %description -l pl
 mtr jest narzêdziem do diagnostyki sieci, ³±cz±cym funkcje
-traceroute'a oraz ping'a. Program ten ¶ledzi trasê po³±cznia miêdzy
+traceroute'a oraz pinga. Program ten ¶ledzi trasê po³±cznia miêdzy
 punktem z którego zosta³ uruchomiony, a punktem docelowym. Po
 skompletowaniu listy punktów po¶rednich przez które pzrechodz± pakiety
 miêdzy tymi punktami do ka¿dego z nich wysy³ane s± pakiety ICMP ECHO i
@@ -65,8 +65,7 @@ Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci, wersja X11
 Summary(ru):	Matt's Traceroute - ÕÔÉÌÉÔÁ ÄÌÑ ÄÉÁÇÎÏÓÔÉËÉ ÓÅÔÉ
 Summary(uk):	Matt's Traceroute - ÕÔÉÌ¦ÔÁ ÄÌÑ Ä¦ÁÇÎÏÓÔÉËÉ ÍÅÒÅÖ¦
 Group:		Networking/Utilities
-BuildRequires:	gtk+-devel
-
+Obsoletes:	mtr-gtk
 
 %description -n mtr-X11
 mtr combines the functionaly of the traceroute and ping programs in a
@@ -79,7 +78,7 @@ prints running statistics about each machine.
 
 %description -n mtr-X11 -l pl
 mtr jest narzêdziem do diagnostyki sieci, ³±cz±cym funkcje
-traceroute'a oraz ping'a. Program ten ¶ledzi trasê po³±cznia miêdzy
+traceroute'a oraz pinga. Program ten ¶ledzi trasê po³±cznia miêdzy
 punktem z którego zosta³ uruchomiony, a punktem docelowym. Po
 skompletowaniu listy punktów po¶rednich przez które pzrechodz± pakiety
 miêdzy tymi punktami do ka¿dego z nich wysy³ane s± pakiety ICMP ECHO i
