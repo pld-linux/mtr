@@ -2,12 +2,13 @@ Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci.
 Name:		mtr
 Version:	0.37
-Release:	1
+Release:	2
 Group:		Networking/Utilities
 Group(pl):	Sieciowe/Narzêdzia
 Copyright:	GPL
 Source:		ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
-BuildPrereq:	gtk+-devel >= 1.2.1
+Patch0:		mtr-resolv.patch
+BuildPrereq:	gtk+-devel 
 URL:		http://www.mkimball.org/mtr.html
 Buildroot:	/tmp/%{name}-%{version}-root
 
@@ -22,21 +23,24 @@ Ta wersja by³a kompilowana tylko z interfejsem tekstowym (ncurses).
 
 %prep
 %setup -q
+%patch -p1
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target_platform} \
-	--prefix=/usr
+LDFLAGS="-s"; export LDFLAGS
+aclocal && autoconf && %configure
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/usr/{sbin,man/man8}
-make prefix=$RPM_BUILD_ROOT/usr install
+install -d $RPM_BUILD_ROOT%{_prefix}/{sbin,share/man/man8}
+make \
+    prefix=$RPM_BUILD_ROOT%{_prefix} \
+    mandir=$RPM_BUILD_ROOT%{_mandir} \
+    sbindir=$RPM_BUILD_ROOT%{_sbindir} \
+    install
 
-gzip -9fn $RPM_BUILD_ROOT%{_mandir}/man8/* \
-	AUTHORS NEWS README SECURITY
+gzip -9fn $RPM_BUILD_ROOT%{_mandir}/man8/* AUTHORS NEWS README SECURITY
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -45,7 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *gz img/mtr_icon.xpm
 
-%attr(4755,root,root) %{_sbindir}/mtr
+%attr(4711,root,root) %{_sbindir}/mtr
 %{_mandir}/man8/*
 
 %changelog
