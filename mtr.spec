@@ -2,7 +2,7 @@ Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci
 Name:		mtr
 Version:	0.42
-Release:	2
+Release:	3
 Group:		Networking/Utilities
 Group(pl):	Sieciowe/Narzêdzia
 License:	GPL
