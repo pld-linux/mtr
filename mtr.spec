@@ -10,7 +10,7 @@ Summary(ru):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Name:		mtr
 Version:	0.54
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -155,7 +155,7 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 	--enable-ipv6
 
 %{__make}
-mv -f mtr mtr-x11
+mv -f mtr mtr-gtk
 %{__make} clean
 %endif
 
@@ -167,15 +167,15 @@ mv -f mtr mtr-x11
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/Misc,%{_pixmapsdir},/usr/X11R6/sbin}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with x}
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
-install mtr-x11 $RPM_BUILD_ROOT/usr/X11R6/sbin/mtr
+install mtr-gtk $RPM_BUILD_ROOT%{_sbindir}
 %endif
 
 ln -sf mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
@@ -193,7 +193,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with x}
 %files X11
 %defattr(644,root,root,755)
-%attr(4754,root,adm) /usr/X11R6/sbin/mtr
-%{_applnkdir}/Network/Misc/*
-%{_pixmapsdir}/*
+%attr(4754,root,adm) %{_sbindir}/mtr-gtk
+%{_desktopdir}/mtr.desktop
+%{_pixmapsdir}/mtr.png
 %endif
