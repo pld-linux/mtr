@@ -1,6 +1,6 @@
 #
 # TODO:
-# IPv6 works, but mtr6 doesn't works (remove link?) - use mtr -6 instead
+# IPv6 works, but mtr6 doesn't work (remove link?) - use mtr -6 instead
 #
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(es):	Herramienta para diagnСstico de red, combinando ping/traceroute
@@ -19,10 +19,11 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-resolv.patch
 Patch2:		ftp://ftp.kame.net/pub/kame/misc/mtr-052-v6-20030110b.diff.gz
-#Patch2:		%{name}-0.48-v6-20020306.patch.gz
 Patch3:		%{name}-nogtk.patch
 # required by KAME patch
 Patch4:		%{name}-SA_LEN.patch
+# prevent exit() with terminal breakage caused by v6 patch
+Patch5:		%{name}-v6-notermbreak.patch
 Icon:		mtr.xpm
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
@@ -136,6 +137,7 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 rm -f missing
