@@ -1,13 +1,10 @@
-# Conditional build:
-# --with X11 - build with X11/gtk+ interface
-#
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzЙdzie do diagnostyki sieci
 Summary(ru):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Name:		mtr
 Version:	0.49
-Release:	1
+Release:	1.5
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -22,7 +19,6 @@ Patch3:		%{name}-nogtk.patch
 Icon:		mtr.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?_with_X11:BuildRequires:	gtk+-devel}
 BuildRequires:	ncurses-devel >= 5.2
 URL:		http://www.bitwizard.nl/mtr/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -63,6 +59,49 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 з хоп╕в для визначення якост╕ л╕нка до кожно╖ з машин. В ход╕ цього
 процесу mtr виводить поточну статистику по кожн╕й машин╕.
 
+%package X11
+Summary:	Matt's Traceroute - network diagnostic tool, X11 version
+Summary(pl):	Matt's Traceroute - narzЙdzie do diagnostyki sieci, wersja X11
+Summary(ru):	Matt's Traceroute - утилита для диагностики сети
+Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
+Group:		Networking/Utilities
+BuildRequires:	gtk+-devel
+
+
+%description -n mtr-X11
+mtr combines the functionaly of the traceroute and ping programs in a
+single network diagnostic tool. As mtr starts, it investigates the
+network connection between the host mtr runs on and the destination.
+After it determines the address of each network hop between the
+machines, it sends a sequence ICMP ECHO requests to each one to
+determine the quality of the link to each machine. As it does this, it
+prints running statistics about each machine.
+
+%description -n mtr-X11 -l pl
+mtr jest narzЙdziem do diagnostyki sieci, Ё╠cz╠cym funkcje
+traceroute'a oraz ping'a. Program ten ╤ledzi trasЙ poЁ╠cznia miЙdzy
+punktem z ktСrego zostaЁ uruchomiony, a punktem docelowym. Po
+skompletowaniu listy punktСw po╤rednich przez ktСre pzrechodz╠ pakiety
+miЙdzy tymi punktami do ka©dego z nich wysyЁane s╠ pakiety ICMP ECHO i
+czasy odpowiedzi s╠ nastЙpnie prezentowane na bie©╠co.
+
+%description -n mtr-X11 -l ru
+mtr - это traceroute и ping в одном флаконе. При старте mtr исследует
+сетевое соединение между машиной, на которой он запущен, и машиной,
+заданной пользователем. После того, как он определит адреса каждого
+хопа между этими двумя машинами, mtr посылает последовательность ICMP
+ECHO запросов на каждый из хопов для определения качества линка с
+каждой из машин. По мере того, как он это делает, mtr выводит текущую
+статистику по каждой машине.
+
+%description -n mtr-X11 -l uk
+mtr - це traceroute та ping в одному флакон╕. При запуску mtr
+досл╕джу╓ мережеве з'╓днання м╕ж машиною, на як╕й в╕н запущений та
+заданою користувачем. П╕сля визначення адрес кожного хопу м╕ж цими
+двома машинами, mtr посила╓ посл╕довн╕сть ICMP ECHO запит╕в на кожний
+з хоп╕в для визначення якост╕ л╕нка до кожно╖ з машин. В ход╕ цього
+процесу mtr виводить поточну статистику по кожн╕й машин╕.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -76,20 +115,30 @@ aclocal
 autoconf
 rm -f missing
 automake -a -c -f
+
 %configure \
-	--with%{!?_with_X11:out}-gtk \
+	--with-gtk \
+	--enable-ipv6
+
+%{__make}
+mv -f mtr mtr-x11 
+%{__make} clean
+
+%configure \
+	--without-gtk \
 	--enable-ipv6
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__install} -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/Misc,%{_pixmapsdir}}
+%{__install} -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/Misc,%{_pixmapsdir},/usr/X11R6/sbin/}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 %{__install} %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
 %{__install} %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+%{__install} mtr-x11 $RPM_BUILD_ROOT/usr/X11R6/sbin/mtr
 
 ln -sf mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
 
@@ -104,5 +153,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(4754,root,adm) %{_sbindir}/mtr
 %attr(4754,root,adm) %{_sbindir}/mtr6
 %{_mandir}/man8/*
+
+%files X11
+%defattr(644,root,root,755)
+%attr(4754,root,adm) /usr/X11R6/sbin/mtr
 %{_applnkdir}/Network/Misc/*
 %{_pixmapsdir}/*
