@@ -1,0 +1,12 @@
+--- mtr-0.69/mtr.c.orig	2005-01-11 09:33:41.000000000 +0100
++++ mtr-0.69/mtr.c	2005-01-22 17:51:44.051315016 +0100
+@@ -360,6 +360,9 @@
+ 
+   parse_mtr_options (getenv ("MTR_OPTIONS"));
+ 
++  if ((strlen(argv[0]) > 3) && !strcmp(argv[0] + strlen(argv[0]) - 4, "mtr6"))
++    af = AF_INET6;
++
+   parse_arg (argc, argv);
+ 
+   if (PrintVersion) {
