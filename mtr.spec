@@ -1,11 +1,11 @@
 # Conditional build:
-# --without X11 - build wihtout X11/gtk+ interface
+# --witht X11 - build wihtt X11/gtk+ interface
 #
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci
 Name:		mtr
 Version:	0.44
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -20,7 +20,7 @@ Patch2:		%{name}-nogtk.patch
 Icon:		mtr.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{!?bcond_off_X11:BuildRequires:	gtk+-devel}
+%{?bcond_on_X11:BuildRequires:	gtk+-devel}
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.2
 URL:		http://www.bitwizard.nl/mtr/
@@ -52,7 +52,7 @@ autoconf
 rm -f missing
 automake -a -c
 %configure \
-	--with%{?bcond_off_X11:out}-gtk
+	--with%{!?bcond_on_X11:out}-gtk
 
 %{__make}
 
