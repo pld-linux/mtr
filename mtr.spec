@@ -5,7 +5,7 @@ Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci
 Name:		mtr
 Version:	0.44
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -17,6 +17,8 @@ Source2:	%{name}.png
 Patch0:		%{name}-resolv.patch
 Patch1:		%{name}-makefile.patch
 Patch2:		%{name}-nogtk.patch
+#Patch3:	ftp://ftp.kame.net/pub/kame/misc/mtr-042-v6-20010508.diff.gz
+Patch3:		mtr-042-v6-20010519.patch.gz
 Icon:		mtr.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -43,6 +45,7 @@ tekstowym (ncurses) oraz obs³ug± X Window (Gtk).
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 libtoolize --copy --force
@@ -52,7 +55,8 @@ autoconf
 rm -f missing
 automake -a -c
 %configure \
-	--with%{!?bcond_on_X11:out}-gtk
+	--with%{!?bcond_on_X11:out}-gtk \
+	--enable-ipv6
 
 %{__make}
 
@@ -65,6 +69,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__install} %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Networking/Misc
 %{__install} %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
+ln -sf mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
+
 gzip -9nf AUTHORS NEWS README SECURITY
 
 %clean
@@ -73,7 +79,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *gz
-%attr(755,root,root) %{_sbindir}/mtr
+%attr(4750,root,icmp) %{_sbindir}/mtr
+%attr(4750,root,icmp) %{_sbindir}/mtr6
 %{_mandir}/man8/*
 %{_applnkdir}/Networking/Misc/*
 %{_pixmapsdir}/*
