@@ -3,6 +3,8 @@
 #
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzЙdzie do diagnostyki sieci
+Summary(ru):	Matt's Traceroute - утилита для диагностики сети
+Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Name:		mtr
 Version:	0.49
 Release:	1
@@ -28,14 +30,38 @@ Obsoletes:	mtr-gtk
 Obsoletes:	mtr-ncurses
 
 %description
-mtr combines the functionality of the 'traceroute' and 'ping' programs
-into a single network diagnostic tool. This version has been compiled
-with only the text (ncurses) interface.
+mtr combines the functionaly of the traceroute and ping programs in a
+single network diagnostic tool. As mtr starts, it investigates the
+network connection between the host mtr runs on and the destination.
+After it determines the address of each network hop between the
+machines, it sends a sequence ICMP ECHO requests to each one to
+determine the quality of the link to each machine. As it does this, it
+prints running statistics about each machine.
 
 %description -l pl
-Mtr jest narzЙdziem do diagnostyki sieci, Ё╠cz╠cym funkcje
-traceroute'a oraz ping'a. Ta wersja zostaЁa skompilowana z interfejsem
-tekstowym (ncurses) oraz obsЁug╠ X Window (Gtk).
+mtr jest narzЙdziem do diagnostyki sieci, Ё╠cz╠cym funkcje
+traceroute'a oraz ping'a. Program ten ╤ledzi trasЙ poЁ╠cznia miЙdzy
+punktem z ktСrego zostaЁ uruchomiony, a punktem docelowym. Po
+skompletowaniu listy punktСw po╤rednich przez ktСre pzrechodz╠ pakiety
+miЙdzy tymi punktami do ka©dego z nich wysyЁane s╠ pakiety ICMP ECHO i
+czasy odpowiedzi s╠ nastЙpnie prezentowane na bie©╠co.
+
+%description -l ru
+mtr - это traceroute и ping в одном флаконе. При старте mtr исследует
+сетевое соединение между машиной, на которой он запущен, и машиной,
+заданной пользователем. После того, как он определит адреса каждого
+хопа между этими двумя машинами, mtr посылает последовательность ICMP
+ECHO запросов на каждый из хопов для определения качества линка с
+каждой из машин. По мере того, как он это делает, mtr выводит текущую
+статистику по каждой машине.
+
+%description -l uk
+mtr - це traceroute та ping в одному флакон╕. При запуску mtr
+досл╕джу╓ мережеве з'╓днання м╕ж машиною, на як╕й в╕н запущений та
+заданою користувачем. П╕сля визначення адрес кожного хопу м╕ж цими
+двома машинами, mtr посила╓ посл╕довн╕сть ICMP ECHO запит╕в на кожний
+з хоп╕в для визначення якост╕ л╕нка до кожно╖ з машин. В ход╕ цього
+процесу mtr виводить поточну статистику по кожн╕й машин╕.
 
 %prep
 %setup -q
