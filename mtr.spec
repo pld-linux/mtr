@@ -14,9 +14,11 @@ Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-resolv.patch
-#Patch2:	ftp://ftp.kame.net/pub/kame/misc/mtr-045-v6-20020207.diff.gz
-Patch2:		%{name}-0.48-v6-20020306.patch.gz
+Patch2:		ftp://ftp.kame.net/pub/kame/misc/mtr-052-v6-20030110b.diff.gz
+#Patch2:		%{name}-0.48-v6-20020306.patch.gz
 Patch3:		%{name}-nogtk.patch
+# required by KAME patch
+Patch4:		%{name}-SA_LEN.patch
 Icon:		mtr.xpm
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
@@ -127,8 +129,9 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 %prep
 %setup -q
 %patch0 -p1
-#%patch2 -p1	-- to be fixed
-#%patch3 -p1	-- to be fixed 
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 rm -f missing
