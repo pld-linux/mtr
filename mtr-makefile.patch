@@ -1,0 +1,24 @@
+diff -u mtr-0.41.old/Makefile.in mtr-0.41/Makefile.in
+--- mtr-0.41.old/Makefile.in	Sun Feb 13 10:45:36 2000
++++ mtr-0.41/Makefile.in	Sun Feb 13 10:45:42 2000
+@@ -484,7 +484,7 @@
+ maintainer-clean-generic clean mostlyclean distclean maintainer-clean
+ 
+ install-exec-am: 
+-	chmod u+s $(sbindir)/mtr
++	chmod u+x $(sbindir)/mtr
+ distclean-local:
+ 	cp Makefile.dist Makefile
+ 	rm -f *.orig
+diff -u mtr-0.41.old/Makefile.am mtr-0.41/Makefile.am
+--- mtr-0.41.old/Makefile.am	Sun Feb 13 10:45:36 2000
++++ mtr-0.41/Makefile.am	Sun Feb 13 10:45:42 2000
+@@ -3,7 +3,7 @@
+ sbin_PROGRAMS = mtr
+ man_MANS = mtr.8
+ install-exec-am: 
+-	chmod u+s $(sbindir)/mtr
++	chmod u+x $(sbindir)/mtr
+ 
+ mtr_SOURCES = mtr.c \
+               net.c net.h \
