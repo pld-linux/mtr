@@ -9,6 +9,7 @@ License:	GPL
 Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
 Patch0:		mtr-resolv.patch
 Patch1:		mtr-makefile.patch
+Patch2:		ftp://ftp.kame.net/pub/kame/misc/mtr-042-v6-20000719.diff.gz
 BuildRequires:	gtk+-devel 
 BuildRequires:	ncurses-devel >= 5.0
 Icon:		mtr.gif
@@ -29,9 +30,12 @@ tekstowym (ncurses) oraz obs³ug± X Window (Gtk).
 %setup -q
 %patch0 -p1
 %patch1 -p1
+#%patch2 -p1
 
 %build
-%configure
+autoconf
+%configure \
+	--enable-ipv6
 %{__make}
 
 %install
