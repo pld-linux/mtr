@@ -1,12 +1,12 @@
 Summary:	Matt's Traceroute - network diagnostic tool
-Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci.
+Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci
 Name:		mtr
 Version:	0.42
-Release:	1
+Release:	2
 Group:		Networking/Utilities
 Group(pl):	Sieciowe/Narzêdzia
-Copyright:	GPL
-Source:		ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
+License:	GPL
+Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
 Patch0:		mtr-resolv.patch
 Patch1:		mtr-makefile.patch
 BuildRequires:	gtk+-devel 
@@ -16,9 +16,9 @@ URL:		http://www.bitwizard.nl/mtr/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-mtr combines the functionality of the 'traceroute' and 'ping'
-programs into a single network diagnostic tool. This version
-has been compiled with text (ncurses) and X (Gtk) interfaces.
+mtr combines the functionality of the 'traceroute' and 'ping' programs into
+a single network diagnostic tool. This version has been compiled with only
+the text (ncurses) interface.
 
 %description -l pl
 Mtr jest narzêdziem do diagnostyki sieci, ³±cz±cym funkcje traceroute'a oraz
@@ -40,7 +40,7 @@ rm -rf $RPM_BUILD_ROOT
 
 make install DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9fn $RPM_BUILD_ROOT%{_mandir}/man8/* \
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man8/* \
 	AUTHORS NEWS README SECURITY
 
 %clean
