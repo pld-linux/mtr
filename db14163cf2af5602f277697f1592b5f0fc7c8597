@@ -1,0 +1,5 @@
+- release 7,
+- added ac25x patch with fixex incorrect using ac comments (dnl) in
+  configure.in,
+- remove libtoolize call from %build and libtool from BuildRequires
+  (isn't neccessary).
