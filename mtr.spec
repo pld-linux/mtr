@@ -132,13 +132,13 @@ mv -f mtr mtr-x11
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__install} -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/Misc,%{_pixmapsdir},/usr/X11R6/sbin/}
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/Misc,%{_pixmapsdir},/usr/X11R6/sbin/}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-%{__install} %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
-%{__install} %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
-%{__install} mtr-x11 $RPM_BUILD_ROOT/usr/X11R6/sbin/mtr
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+install mtr-x11 $RPM_BUILD_ROOT/usr/X11R6/sbin/mtr
 
 ln -sf mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
 
