@@ -2,13 +2,15 @@ Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci.
 Name:		mtr
 Version:	0.33
-Release:	1
+Release:	2
 Group:		Networking/Utilities
 Group(pl):	Sieciowe/U¿ytki
 Copyright:	GPL
 Source:		ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
 Patch:		%{name}-resolv.patch
-Requires:	glib = 1.2.0
+BuildPrereq:	glib-devel
+BuildPrereq:	gtk+-devel
+%requires_pkg	glib
 URL:		http://www.mkimball.org/mtr.html
 Buildroot:	/tmp/%{name}-%{version}-root
 
@@ -34,22 +36,24 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/usr/{sbin,man/man8}
+install -d $RPM_BUILD_ROOT/usr/{sbin,man/man8,X11R6/share/pixmaps}
 make prefix=$RPM_BUILD_ROOT/usr install
 
-gzip -9fn $RPM_BUILD_ROOT/usr/man/man8/*
-bzip2 -9 AUTHORS NEWS README SECURITY 
+install img/mtr_icon.xpm $RPM_BUILD_ROOT/usr/X11R6/share/pixmaps
+
+gzip -9fn $RPM_BUILD_ROOT/usr/man/man8/* \
+	AUTHORS NEWS README SECURITY 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS.bz2 NEWS.bz2 README.bz2 
-%doc SECURITY.bz2 img/mtr_icon.xpm
+%doc {AUTHORS,NEWS,README,SECURITY}.gz
 
 %attr(2711,root,icmp) /usr/sbin/mtr
 /usr/man/man8/*
+/usr/X11R6/share/pixmaps/*
 
 %changelog
 * Thu Mar 11 1999 Artur Frysiak <wiget@pld.org.pl>
