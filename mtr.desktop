@@ -7,5 +7,5 @@ Exec=/usr/sbin/mtr-gtk
 Icon=mtr.png
 Terminal=false
 Encoding=UTF-8
-Categories=Network
+Categories=Network;
 # vi: encoding=utf-8
