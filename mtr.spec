@@ -1,13 +1,13 @@
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci.
 Name:		mtr
-Version:	0.28
-Release:	5d
+Version:	0.33
+Release:	1
 Group:		Networking/Utilities
 Group(pl):	Sieciowe/U¿ytki
 Copyright:	GPL
 Source:		ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
-Patch:		%{name}.patch
+Patch:		%{name}-resolv.patch
 Requires:	glib = 1.2.0
 URL:		http://www.mkimball.org/mtr.html
 Buildroot:	/tmp/%{name}-%{version}-root
@@ -28,7 +28,7 @@ Ta wersja by³a kompilowana tylko z interfejsem tekstowym (ncurses).
 %build
 CFLAGS=$RPM_OPT_FLAGS LDFLAGS=-s \
     ./configure \
-	--prefix=/usr
+	--prefix=/usr 
 make
 
 %install
@@ -52,6 +52,12 @@ rm -rf $RPM_BUILD_ROOT
 /usr/man/man8/*
 
 %changelog
+* Thu Mar 11 1999 Artur Frysiak <wiget@pld.org.pl>
+  [0.33-1]
+- removed man group from man pages
+- removed mtr.patch
+- added mtr-resolv.patch (link with -lresolv )
+
 * Mon Jan 18 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [0.28-2d]
 - changed permission of mtr to 2711, 
