@@ -1,0 +1,22 @@
+diff -dur mtr-0.54.orig/configure.in mtr-0.54/configure.in
+--- mtr-0.54.orig/configure.in	2004-02-09 11:39:06.000000000 +0100
++++ mtr-0.54/configure.in	2004-02-09 11:40:04.568848232 +0100
+@@ -100,17 +100,11 @@
+ AC_CHECK_FUNC(gethostbyname, ,
+   AC_CHECK_LIB(nsl, gethostbyname, , AC_MSG_ERROR(No nameservice library found)))
+ 
+-#AC_CHECK_FUNC(res_init, , 
+-#  AC_CHECK_LIB(bind, res_init, , 
+-#   AC_CHECK_LIB(resolv, res_init, , AC_MSG_ERROR(No resolver library found))))
++LIBS="$LIBS -lresolv"
+ 
+ AC_CHECK_FUNCS(seteuid)
+ #  AC_CHECK_FUNC(setuid, , AC_MSG_ERROR (I Need either seteuid or setuid))
+ 
+-AC_CHECK_FUNC(res_mkquery, , 
+-  AC_CHECK_LIB(bind, res_mkquery, , 
+-   AC_CHECK_LIB(resolv, res_mkquery, , AC_MSG_ERROR(No resolver library found))))
+-
+ AC_CHECK_FUNC(herror, , AC_DEFINE(NO_HERROR))
+ AC_CHECK_FUNC(strerror, , AC_DEFINE(NO_STRERROR))
+ 
