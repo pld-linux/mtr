@@ -1,6 +1,6 @@
 #
-# TODO:
-# IPv6 works, but mtr6 doesn't work (remove link?) - use mtr -6 instead
+# Conditional build:
+%bcond_without	x	# without X11 version
 #
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(es):	Herramienta para diagnСstico de red, combinando ping/traceroute
@@ -29,7 +29,7 @@ Icon:		mtr.xpm
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gtk+-devel
+%{?with_x:BuildRequires:	gtk+-devel}
 BuildRequires:	ncurses-devel >= 5.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mtr-ncurses
@@ -141,12 +141,12 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 %patch5 -p1
 
 %build
-rm -f missing
 %{__aclocal}
 %{__autoheader}
 %{__autoconf}
 %{__automake}
 
+%if %{with x}
 %configure \
 	--with-gtk \
 	--enable-ipv6
@@ -154,6 +154,7 @@ rm -f missing
 %{__make}
 mv -f mtr mtr-x11
 %{__make} clean
+%endif
 
 %configure \
 	--without-gtk \
@@ -163,13 +164,16 @@ mv -f mtr mtr-x11
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/Misc,%{_pixmapsdir},%{_prefix}/X11R6/sbin/}
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/Misc,%{_pixmapsdir},/usr/X11R6/sbin}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
+%if %{with x}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
-install mtr-x11 $RPM_BUILD_ROOT%{_prefix}/X11R6/sbin/mtr
+install mtr-x11 $RPM_BUILD_ROOT/usr/X11R6/sbin/mtr
+%endif
 
 ln -sf mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
 
@@ -183,8 +187,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(4754,root,adm) %{_sbindir}/mtr6
 %{_mandir}/man8/*
 
+%if %{with x}
 %files X11
 %defattr(644,root,root,755)
 %attr(4754,root,adm) /usr/X11R6/sbin/mtr
 %{_applnkdir}/Network/Misc/*
 %{_pixmapsdir}/*
+%endif
