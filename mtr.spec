@@ -1,19 +1,32 @@
+# Conditional build:
+# --without X11 - build wihtout X11/gtk+ interface
+#
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci
 Name:		mtr
-Version:	0.42
-Release:	4
-Group:		Networking/Utilities
-Group(pl):	Sieciowe/Narzêdzia
+Version:	0.44
+Release:	1
+Epoch:		1
 License:	GPL
+Group:		Networking/Utilities
+Group(de):	Netzwerkwesen/Werkzeuge
+Group(pl):	Sieciowe/Narzêdzia
 Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
-Patch0:		mtr-resolv.patch
-Patch1:		mtr-makefile.patch
-BuildRequires:	gtk+-devel 
-BuildRequires:	ncurses-devel >= 5.0
-Icon:		mtr.gif
+Source1:	%{name}.desktop
+Source2:	%{name}.png
+Patch0:		%{name}-resolv.patch
+Patch1:		%{name}-makefile.patch
+Patch2:		%{name}-nogtk.patch
+Icon:		mtr.xpm
+BuildRequires:	autoconf
+BuildRequires:	automake
+%{!?bcond_off_X11:BuildRequires:	gtk+-devel}
+BuildRequires:	libtool
+BuildRequires:	ncurses-devel >= 5.2
 URL:		http://www.bitwizard.nl/mtr/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	mtr-gtk
+Obsoletes:	mtr-ncurses
 
 %description
 mtr combines the functionality of the 'traceroute' and 'ping' programs
@@ -29,15 +42,28 @@ tekstowym (ncurses) oraz obs³ug± X Window (Gtk).
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
-%configure
+libtoolize --copy --force
+autoheader
+aclocal
+autoconf
+rm -f missing
+automake -a -c
+%configure \
+	--with%{?bcond_off_X11:out}-gtk
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+%{__install} -d $RPM_BUILD_ROOT{%{_applnkdir}/Networking/Misc,%{_pixmapsdir}}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
+
+%{__install} %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Networking/Misc
+%{__install} %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 gzip -9nf AUTHORS NEWS README SECURITY
 
@@ -46,6 +72,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *gz img/mtr_icon.xpm
-%attr(4750,root,icmp) %{_sbindir}/mtr
+%doc *gz
+%attr(755,root,root) %{_sbindir}/mtr
 %{_mandir}/man8/*
+%{_applnkdir}/Networking/Misc/*
+%{_pixmapsdir}/*
