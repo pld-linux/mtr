@@ -1,26 +1,38 @@
---- mtr-0.42/configure.in~	Fri Aug 11 18:35:56 2000
-+++ mtr-0.42/configure.in	Fri Aug 11 18:38:43 2000
-@@ -4,7 +4,9 @@
- AC_SUBST(GTK_OBJ)
- AC_SUBST(CURSES_OBJ)
+--- mtr-0.43/mtr.c.orig	Mon Apr 16 12:54:21 2001
++++ mtr-0.43/mtr.c	Mon Apr 16 12:58:11 2001
+@@ -56,7 +56,9 @@
+     { "report", 0, 0, 'r' },
+     { "report-cycles", 1, 0, 'c' },
+     { "curses", 0, 0, 't' },
++#ifndef NO_GTK
+     { "gtk", 0, 0, 'g' },
++#endif
+     { "interval", 1, 0, 'i' },
+     { "psize", 1, 0, 'p' },
+     { "no-dns", 0, 0, 'n' },
+@@ -67,7 +69,11 @@
  
--GTK_OBJ=gtk.o
-+AC_DEFINE(NO_GTK)
-+GTK_OBJ=
-+
- CURSES_OBJ=curses.o
+   opt = 0;
+   while(1) {
++#ifdef NO_GTK
++    opt = getopt_long(argc, argv, "hvrc:tklnsi:p:", long_options, NULL);
++#else
+     opt = getopt_long(argc, argv, "hvrc:tgklnsi:p:", long_options, NULL);
++#endif
+     if(opt == -1)
+       break;
  
- AC_PROG_CC
-@@ -38,12 +40,6 @@
- AC_CHECK_HEADERS(sys/xti.h)
+@@ -182,8 +188,13 @@
+   }
  
- AC_CHECK_LIB(m, floor, , AC_MSG_ERROR(No math library found))
--
--AM_PATH_GTK(1.0.0, CFLAGS="$CFLAGS $GTK_CFLAGS"
--		   LIBS="$LIBS $GTK_LIBS",
--		   AC_MSG_WARN(Building without GTK+ display support)
--		   AC_DEFINE(NO_GTK)
--		   GTK_OBJ=)
- 
- AC_CHECK_FUNC(socket, , 
-   AC_CHECK_LIB(socket, socket, , AC_MSG_ERROR(No socket library found)))
+   if(PrintHelp) {
++#ifdef NO_GTK
++    printf("usage: %s [-hvrctlsni] [--help] [--version] [--report]\n"
++	   "\t\t[--report-cycles=COUNT] [--curses]\n"
++#else
+     printf("usage: %s [-hvrctglsni] [--help] [--version] [--report]\n"
+ 	   "\t\t[--report-cycles=COUNT] [--curses] [--gtk]\n"
++#endif
+            "\t\t[--raw] [--split] [--no-dns]\n"      /* BL */
+            "\t\t[--psize=bytes/-p=bytes]\n"            /* ok */
+ 	   "\t\t[--interval=SECONDS] HOSTNAME [PACKETSIZE]\n", argv[0]);
