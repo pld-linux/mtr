@@ -51,7 +51,7 @@ prints running statistics about each machine.
 %description -l es
 mtr es una herramienta para diagnóstico de la red que combina ping y
 traceroute en un programa. Tiene dos interfaces, una ncurses, útil
-para uso en sesiones telnet/ssh y una gtk para uso en el X Window.
+para uso en sesiones telnet/ssh y una GTK+ para uso en el X Window.
 
 %description -l pl
 mtr jest narzêdziem do diagnostyki sieci, ³±cz±cym funkcje
@@ -64,7 +64,7 @@ czasy odpowiedzi s± nastêpnie prezentowane na bie¿±co.
 %description -l pt_BR
 O mtr é uma ferramenta para diagnóstico da rede que combina ping e
 traceroute em um programa. Tem duas interfaces, uma ncurses, útil para
-uso em sessões telnet/ssh e uma gtk para uso no X Window.
+uso em sessões telnet/ssh e uma GTK+ para uso no X Window.
 
 %description -l ru
 mtr - ÜÔÏ traceroute É ping × ÏÄÎÏÍ ÆÌÁËÏÎÅ. ğÒÉ ÓÔÁÒÔÅ mtr ÉÓÓÌÅÄÕÅÔ
@@ -85,9 +85,9 @@ mtr - ÃÅ traceroute ÔÁ ping × ÏÄÎÏÍÕ ÆÌÁËÏÎ¦. ğÒÉ ÚÁĞÕÓËÕ mtr
 
 %package X11
 Summary:	Matt's Traceroute - network diagnostic tool, X11 version
-Summary(es):	Interface GTK para mtr
+Summary(es):	Interface GTK+ para mtr
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci, wersja X11
-Summary(pt_BR):	Interface GTK para o mtr
+Summary(pt_BR):	Interface GTK+ para o mtr
 Summary(ru):	Matt's Traceroute - ÕÔÉÌÉÔÁ ÄÌÑ ÄÉÁÇÎÏÓÔÉËÉ ÓÅÔÉ
 Summary(uk):	Matt's Traceroute - ÕÔÉÌ¦ÔÁ ÄÌÑ Ä¦ÁÇÎÏÓÔÉËÉ ÍÅÒÅÖ¦
 Group:		Networking/Utilities
@@ -105,7 +105,7 @@ prints running statistics about each machine.
 %description X11 -l es
 mtr es una herramienta para diagnóstico de la red que combina ping y
 traceroute en un programa. Tiene dos interfaces, una ncurses, útil
-para uso en sesiones telnet/ssh y una gtk para uso en el X Window.
+para uso en sesiones telnet/ssh y una GTK+ para uso en el X Window.
 
 %description X11 -l pl
 mtr jest narzêdziem do diagnostyki sieci, ³±cz±cym funkcje
@@ -118,7 +118,7 @@ czasy odpowiedzi s± nastêpnie prezentowane na bie¿±co.
 %description X11 -l pt_BR
 O mtr é uma ferramenta para diagnóstico da rede que combina ping e
 traceroute em um programa. Tem duas interfaces, uma ncurses, útil para
-uso em sessões telnet/ssh e uma gtk para uso no X Window.
+uso em sessões telnet/ssh e uma GTK+ para uso no X Window.
 
 %description X11 -l ru
 mtr - ÜÔÏ traceroute É ping × ÏÄÎÏÍ ÆÌÁËÏÎÅ. ğÒÉ ÓÔÁÒÔÅ mtr ÉÓÓÌÅÄÕÅÔ
