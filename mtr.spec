@@ -45,7 +45,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *gz img/mtr_icon.xpm
 
-%attr(4755,root,root) /usr/sbin/mtr
+%attr(4755,root,root) %{_sbindir}/mtr
 %{_mandir}/man8/*
 
 %changelog
