@@ -1,5 +1,5 @@
 # Conditional build:
-# --with X11 - build wihtt X11/gtk+ interface
+# --with X11 - build with X11/gtk+ interface
 #
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci
