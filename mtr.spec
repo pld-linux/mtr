@@ -4,8 +4,8 @@
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci
 Name:		mtr
-Version:	0.44
-Release:	7
+Version:	0.48
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -14,10 +14,9 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-resolv.patch
 Patch1:		%{name}-makefile.patch
-Patch2:		%{name}-nogtk.patch
-#Patch3:	ftp://ftp.kame.net/pub/kame/misc/%{name}-042-v6-20010508.diff.gz
-Patch3:		%{name}-0.44-v6-20010519.patch.gz
-Patch4:		%{name}-ac25x.patch
+#Patch2:	ftp://ftp.kame.net/pub/kame/misc/mtr-045-v6-20020207.diff.gz
+Patch2:		%{name}-%{version}-v6-20020306.patch.gz
+Patch3:		%{name}-nogtk.patch
 Icon:		mtr.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -44,7 +43,6 @@ tekstowym (ncurses) oraz obs³ug± X Window (Gtk).
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
 autoheader
