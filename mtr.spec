@@ -1,4 +1,4 @@
-# Conditional build:	
+# Conditional build:
 # --with X11 - build wihtt X11/gtk+ interface
 #
 Summary:	Matt's Traceroute - network diagnostic tool
@@ -17,7 +17,7 @@ Patch1:		%{name}-makefile.patch
 Patch2:		%{name}-nogtk.patch
 #Patch3:	ftp://ftp.kame.net/pub/kame/misc/%{name}-042-v6-20010508.diff.gz
 Patch3:		%{name}-0.44-v6-20010519.patch.gz
-Patch4:		mtr-ac25x.patch
+Patch4:		%{name}-ac25x.patch
 Icon:		mtr.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
