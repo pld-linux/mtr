@@ -22,7 +22,7 @@ Patch3:		mtr-0.44-v6-20010519.patch.gz
 Icon:		mtr.xpm
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?bcond_on_X11:BuildRequires:	gtk+-devel}
+%{?_with_X11:BuildRequires:	gtk+-devel}
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.2
 URL:		http://www.bitwizard.nl/mtr/
@@ -55,7 +55,7 @@ autoconf
 rm -f missing
 automake -a -c
 %configure \
-	--with%{!?bcond_on_X11:out}-gtk \
+	--with%{!?_with_X11:out}-gtk \
 	--enable-ipv6
 
 %{__make}
