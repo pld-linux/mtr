@@ -141,6 +141,8 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 %patch4 -p1
 %patch5 -p1
 
+%{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4}
+
 %build
 %{__aclocal}
 %{__autoheader}
