@@ -188,8 +188,8 @@ ln -sf %{_bindir}/mtr-gtk $RPM_BUILD_ROOT%{_sbindir}
 %endif
 
 ln -sf %{_bindir}/mtr $RPM_BUILD_ROOT%{_sbindir}/mtr
-ln -sf %{_bindir}/mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
-ln -sf mtr $RPM_BUILD_ROOT%{_bindir}/mtr6
+#ln -sf %{_bindir}/mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
+#ln -sf mtr $RPM_BUILD_ROOT%{_bindir}/mtr6
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -198,9 +198,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README SECURITY
 %attr(4754,root,adm) %{_bindir}/mtr
-%attr(4754,root,adm) %{_bindir}/mtr6
+#%attr(4754,root,adm) %{_bindir}/mtr6
 %{_sbindir}/mtr
-%{_sbindir}/mtr6
+#%{_sbindir}/mtr6
 %{_mandir}/man8/*
 
 %if %{with x}
