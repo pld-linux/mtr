@@ -10,7 +10,7 @@ Summary(ru):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Name:		mtr
 Version:	0.54
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -18,14 +18,15 @@ Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
 # SOurce0-md5:	7f7ecb50fc37fedb13135a5ef80fda7d
 Source1:	%{name}.desktop
 Source2:	%{name}.png
-Patch0:		%{name}-resolv.patch
-#Patch2:	ftp://ftp.kame.net/pub/kame/misc/mtr-052-v6-20030110b.diff.gz
-Patch2:		mtr-052-v6-20030110b.diff.gz
-Patch3:		%{name}-nogtk.patch
+#Patch0:	ftp://ftp.kame.net/pub/kame/misc/mtr-052-v6-20030110b.diff.gz
+Patch0:		mtr-052-v6-20030110b.diff.gz
+Patch1:		%{name}-nogtk.patch
 # required by KAME patch
-Patch4:		%{name}-SA_LEN.patch
+Patch2:		%{name}-SA_LEN.patch
 # prevent exit() with terminal breakage caused by v6 patch
-Patch5:		%{name}-v6-notermbreak.patch
+Patch3:		%{name}-v6-notermbreak.patch
+Patch4:		%{name}-Makefile.patch
+Patch5:		%{name}-no_resolver_tests.patch
 Icon:		mtr.xpm
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
