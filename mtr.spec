@@ -135,9 +135,9 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 %build
 autoheader
 aclocal
-autoconf
+%{__autoconf}
 rm -f missing
-automake -a -c -f
+%{__automake}
 
 %configure \
 	--with-gtk \
