@@ -1,0 +1,4 @@
+- updated to 0.44,
+- added support for build conditionally without X11/gtk frontend,
+- added to Obsoletes rules: mtr-gtk and mtr-ncurses,
+- rebuild all am/ac/lt files.
