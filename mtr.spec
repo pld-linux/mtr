@@ -49,7 +49,7 @@ autoheader
 aclocal
 autoconf
 rm -f missing
-automake -a -c
+automake -a -c -f
 %configure \
 	--with%{!?_with_X11:out}-gtk \
 	--enable-ipv6
