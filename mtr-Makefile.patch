@@ -1,13 +1,11 @@
-diff -dur mtr-0.54.orig/Makefile.am mtr-0.54/Makefile.am
---- mtr-0.54.orig/Makefile.am	2002-11-23 18:18:31.000000000 +0100
-+++ mtr-0.54/Makefile.am	2004-02-09 11:35:53.305046136 +0100
+--- mtr-0.69.orig/Makefile.am	2002-11-23 18:18:31.000000000 +0100
++++ mtr-0.69/Makefile.am	2004-02-09 11:35:53.305046136 +0100
 @@ -2,8 +2,6 @@
  
  sbin_PROGRAMS = mtr
  man_MANS = mtr.8
--install-exec-am: 
+-install-exec-hook: 
 -	chmod u+s $(DESTDIR)$(sbindir)/mtr
  
  mtr_SOURCES = mtr.c \
                net.c net.h \
-Only in mtr-0.54: Makefile.am~
