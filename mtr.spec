@@ -8,7 +8,7 @@ Group(pl):	Sieciowe/U¿ytki
 Copyright:	GPL
 Source:		ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
 Patch:		%{name}.patch
-Requires:	glib = 1.1.15
+Requires:	glib = 1.2.0
 URL:		http://www.mkimball.org/mtr.html
 Buildroot:	/tmp/%{name}-%{version}-root
 
@@ -49,7 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc SECURITY.bz2 img/mtr_icon.xpm
 
 %attr(2711,root,icmp) /usr/sbin/mtr
-%attr(0644,root, man) /usr/man/man8/*
+/usr/man/man8/*
 
 %changelog
 * Mon Jan 18 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
