@@ -18,11 +18,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 mtr combines the functionality of the 'traceroute' and 'ping'
 programs into a single network diagnostic tool. This version
-has been compiled with only the text (ncurses) interface.
+has been compiled with text (ncurses) and X (Gtk) interfaces.
 
 %description -l pl
-Mtr jest narzêdziem do diagnostyki sieci, podobnym do traceroute'a.
-Ta wersja by³a kompilowana tylko z interfejsem tekstowym (ncurses).
+Mtr jest narzêdziem do diagnostyki sieci, ³±cz±cym funkcje traceroute'a oraz
+ping'a. Ta wersja zosta³a skompilowana z interfejsem tekstowym (ncurses) oraz
+obs³ug± X Window (Gtk).
 
 %prep
 %setup -q
