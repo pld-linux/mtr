@@ -1,3 +1,7 @@
+#
+# TODO:
+# fix IPv6
+#
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(es):	Herramienta para diagnСstico de red, combinando ping/traceroute
 Summary(pl):	Matt's Traceroute - narzЙdzie do diagnostyki sieci
@@ -6,7 +10,7 @@ Summary(ru):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Name:		mtr
 Version:	0.54
-Release:	1 
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
