@@ -6,4 +6,5 @@ Comment[pl]=Traceroute Matta - narzędzie do diagnostyki sieci
 Exec=/usr/X11R6/sbin/mtr
 Icon=mtr.png
 Terminal=false
+Encoding=UTF-8
 # vi: encoding=utf-8
