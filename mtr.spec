@@ -1,13 +1,13 @@
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci.
 Name:		mtr
-Version:	0.33
+Version:	0.34
 Release:	1
 Group:		Networking/Utilities
-Group(pl):	Sieciowe/U¿ytki
+Group(pl):	Sieciowe/Narzêdzia
 Copyright:	GPL
 Source:		ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
-Patch:		%{name}-resolv.patch
+Patch:		mtr-resolv.patch
 Requires:	glib = 1.2.0
 URL:		http://www.mkimball.org/mtr.html
 Buildroot:	/tmp/%{name}-%{version}-root
@@ -23,12 +23,11 @@ Ta wersja by³a kompilowana tylko z interfejsem tekstowym (ncurses).
 
 %prep
 %setup -q
-%patch -p1
 
 %build
-CFLAGS=$RPM_OPT_FLAGS LDFLAGS=-s \
-    ./configure \
-	--prefix=/usr 
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+./configure \
+	--prefix=/usr
 make
 
 %install
@@ -37,26 +36,23 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/usr/{sbin,man/man8}
 make prefix=$RPM_BUILD_ROOT/usr install
 
-gzip -9fn $RPM_BUILD_ROOT/usr/man/man8/*
-bzip2 -9 AUTHORS NEWS README SECURITY 
+gzip -9fn $RPM_BUILD_ROOT/usr/man/man8/* \
+	AUTHORS NEWS README SECURITY
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS.bz2 NEWS.bz2 README.bz2 
-%doc SECURITY.bz2 img/mtr_icon.xpm
+%doc *gz img/mtr_icon.xpm
 
-%attr(2711,root,icmp) /usr/sbin/mtr
+%attr(4755,root,root) /usr/sbin/mtr
 /usr/man/man8/*
 
 %changelog
-* Thu Mar 11 1999 Artur Frysiak <wiget@pld.org.pl>
-  [0.33-1]
-- removed man group from man pages
-- removed mtr.patch
-- added mtr-resolv.patch (link with -lresolv )
+* Wed Apr  7 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.34-1]
+- removed patch which restrict use mtr for icmp group.
 
 * Mon Jan 18 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [0.28-2d]
