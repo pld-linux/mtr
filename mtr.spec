@@ -1,6 +1,8 @@
 #
+# TODO: ipv6 (patch outdated, code differs too much)
+#
 # Conditional build:
-%bcond_without	x	# without X11 version
+%bcond_without	x	# without X11/GTK+2 version
 #
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(es):	Herramienta para diagnСstico de red, combinando ping/traceroute
@@ -18,23 +20,24 @@ Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
 # Source0-md5:	4a873514d3cea596b990eea769273cd7
 Source1:	%{name}.desktop
 Source2:	%{name}.png
-#Patch0:	ftp://ftp.kame.net/pub/kame/misc/mtr-052-v6-20030110b.diff.gz
+# ftp://ftp.kame.net/pub/kame/misc/mtr-054-v6-20040216.diff.gz
+# NEEDS UPDATE
 Patch0:		mtr-052-v6-20030110b.diff.gz
-Patch1:		%{name}-nogtk.patch
 # required by KAME patch
-Patch2:		%{name}-SA_LEN.patch
+Patch1:		%{name}-SA_LEN.patch
 # prevent exit() with terminal breakage caused by v6 patch
-Patch3:		%{name}-v6-notermbreak.patch
-Patch4:		%{name}-Makefile.patch
-Patch5:		%{name}-no_resolver_tests.patch
+Patch2:		%{name}-v6-notermbreak.patch
+Patch3:		%{name}-Makefile.patch
+Patch4:		%{name}-resolv.patch
 Icon:		mtr.xpm
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_x:BuildRequires:	gtk+2-devel}
+%{?with_x:BuildRequires:	gtk+2-devel >= 2.0.0}
 BuildRequires:	ncurses-devel >= 5.2
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+%{?with_x:BuildRequires:	pkgconfig}
 Obsoletes:	mtr-ncurses
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 mtr combines the functionaly of the traceroute and ping programs in a
@@ -137,12 +140,13 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 %prep
 %setup -q
 #%patch0 -p1
+#%patch1 -p1
 #%patch2 -p1
-#%patch3 -p1
-#%patch4 -p1
-#%patch5 -p1
+%patch3 -p1
+%patch4 -p1
 
-%{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4}
+echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4
+%{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK_2_0],[$3])' >> acinclude.m4}
 
 %build
 %{__aclocal}
@@ -153,6 +157,7 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 %if %{with x}
 %configure \
 	--with-gtk \
+	--enable-gtk2 \
 	--enable-ipv6
 
 %{__make}
@@ -169,7 +174,8 @@ mv -f mtr mtr-gtk
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install-sbinPROGRAMS DESTDIR=$RPM_BUILD_ROOT
+%{__make} install-sbinPROGRAMS \
+	DESTDIR=$RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
