@@ -1,5 +1,5 @@
 # Conditional build:
-# --witht X11 - build wihtt X11/gtk+ interface
+# --with X11 - build wihtt X11/gtk+ interface
 #
 Summary:	Matt's Traceroute - network diagnostic tool
 Summary(pl):	Matt's Traceroute - narzêdzie do diagnostyki sieci
@@ -62,11 +62,11 @@ automake -a -c
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__install} -d $RPM_BUILD_ROOT{%{_applnkdir}/Networking/Misc,%{_pixmapsdir}}
+%{__install} -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/Misc,%{_pixmapsdir}}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-%{__install} %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Networking/Misc
+%{__install} %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Misc
 %{__install} %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 ln -sf mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
@@ -82,5 +82,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(4750,root,icmp) %{_sbindir}/mtr
 %attr(4750,root,icmp) %{_sbindir}/mtr6
 %{_mandir}/man8/*
-%{_applnkdir}/Networking/Misc/*
+%{_applnkdir}/Network/Misc/*
 %{_pixmapsdir}/*
