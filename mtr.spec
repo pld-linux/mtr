@@ -55,9 +55,9 @@ para uso en sesiones telnet/ssh y una gtk para uso en el X Window.
 
 %description -l pl
 mtr jest narzêdziem do diagnostyki sieci, ³±cz±cym funkcje
-traceroute'a oraz pinga. Program ten ¶ledzi trasê po³±cznia miêdzy
+traceroute'a oraz pinga. Program ten ¶ledzi trasê po³±czenia miêdzy
 punktem z którego zosta³ uruchomiony, a punktem docelowym. Po
-skompletowaniu listy punktów po¶rednich przez które pzrechodz± pakiety
+skompletowaniu listy punktów po¶rednich przez które przechodz± pakiety
 miêdzy tymi punktami do ka¿dego z nich wysy³ane s± pakiety ICMP ECHO i
 czasy odpowiedzi s± nastêpnie prezentowane na bie¿±co.
 
@@ -109,9 +109,9 @@ para uso en sesiones telnet/ssh y una gtk para uso en el X Window.
 
 %description X11 -l pl
 mtr jest narzêdziem do diagnostyki sieci, ³±cz±cym funkcje
-traceroute'a oraz pinga. Program ten ¶ledzi trasê po³±cznia miêdzy
+traceroute'a oraz pinga. Program ten ¶ledzi trasê po³±czenia miêdzy
 punktem z którego zosta³ uruchomiony, a punktem docelowym. Po
-skompletowaniu listy punktów po¶rednich przez które pzrechodz± pakiety
+skompletowaniu listy punktów po¶rednich przez które przechodz± pakiety
 miêdzy tymi punktami do ka¿dego z nich wysy³ane s± pakiety ICMP ECHO i
 czasy odpowiedzi s± nastêpnie prezentowane na bie¿±co.
 
