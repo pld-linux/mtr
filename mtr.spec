@@ -8,6 +8,7 @@ Group(pl):	Sieciowe/Narzêdzia
 Copyright:	GPL
 Source:		ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
 Patch0:		mtr-resolv.patch
+Patch1:		mtr-makefile.patch
 BuildRequires:	gtk+-devel 
 BuildRequires:	ncurses-devel >= 5.0
 Icon:		mtr.gif
@@ -25,7 +26,8 @@ Ta wersja by³a kompilowana tylko z interfejsem tekstowym (ncurses).
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 LDFLAGS="-s"; export LDFLAGS
