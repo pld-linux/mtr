@@ -9,13 +9,13 @@ Summary(pt_BR):	Ferramenta para diagnСstico da rede, combinando ping/traceroute
 Summary(ru):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Name:		mtr
-Version:	0.54
-Release:	4
+Version:	0.64
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
-# SOurce0-md5:	7f7ecb50fc37fedb13135a5ef80fda7d
+# Source0-md5:	4a873514d3cea596b990eea769273cd7
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 #Patch0:	ftp://ftp.kame.net/pub/kame/misc/mtr-052-v6-20030110b.diff.gz
@@ -31,7 +31,7 @@ Icon:		mtr.xpm
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_x:BuildRequires:	gtk+-devel}
+%{?with_x:BuildRequires:	gtk+2-devel}
 BuildRequires:	ncurses-devel >= 5.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mtr-ncurses
@@ -136,11 +136,11 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 
 %prep
 %setup -q
-%patch0 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
+#%patch0 -p1
+#%patch2 -p1
+#%patch3 -p1
+#%patch4 -p1
+#%patch5 -p1
 
 %{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4}
 
@@ -169,6 +169,7 @@ mv -f mtr mtr-gtk
 %install
 rm -rf $RPM_BUILD_ROOT
 
+%{__make} install-sbinPROGRAMS DESTDIR=$RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
