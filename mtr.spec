@@ -1,6 +1,4 @@
 #
-# TODO: ipv6 (patch outdated, code differs too much)
-#
 # Conditional build:
 %bcond_without	x	# without X11/GTK+2 version
 #
@@ -11,24 +9,18 @@ Summary(pt_BR):	Ferramenta para diagnСstico da rede, combinando ping/traceroute
 Summary(ru):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Name:		mtr
-Version:	0.67
-Release:	0.1
+Version:	0.69
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
-# Source0-md5:	76347197775ac604d7150ea01502a1df
+# Source0-md5:	58904d6d8d70114195cdeb653d56914c
 Source1:	%{name}.desktop
 Source2:	%{name}.png
-# ftp://ftp.kame.net/pub/kame/misc/mtr-054-v6-20040216.diff.gz
-# NEEDS UPDATE
-Patch0:		mtr-052-v6-20030110b.diff.gz
-# required by KAME patch
-Patch1:		%{name}-SA_LEN.patch
-# prevent exit() with terminal breakage caused by v6 patch
-Patch2:		%{name}-v6-notermbreak.patch
-Patch3:		%{name}-Makefile.patch
-Patch4:		%{name}-resolv.patch
+Patch0:		%{name}-Makefile.patch
+Patch1:		%{name}-resolv.patch
+Patch2:		%{name}-mtr6.patch
 Icon:		mtr.xpm
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
@@ -139,11 +131,9 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 
 %prep
 %setup -q
-#%patch0 -p1
-#%patch1 -p1
-#%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4
 %{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK_2_0],[$3])' >> acinclude.m4}
@@ -188,8 +178,7 @@ ln -sf %{_bindir}/mtr-gtk $RPM_BUILD_ROOT%{_sbindir}
 %endif
 
 ln -sf %{_bindir}/mtr $RPM_BUILD_ROOT%{_sbindir}/mtr
-#ln -sf %{_bindir}/mtr $RPM_BUILD_ROOT%{_sbindir}/mtr6
-#ln -sf mtr $RPM_BUILD_ROOT%{_bindir}/mtr6
+ln -sf mtr $RPM_BUILD_ROOT%{_bindir}/mtr6
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -198,9 +187,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README SECURITY
 %attr(4754,root,adm) %{_bindir}/mtr
-#%attr(4754,root,adm) %{_bindir}/mtr6
+%attr(4754,root,adm) %{_bindir}/mtr6
 %{_sbindir}/mtr
-#%{_sbindir}/mtr6
 %{_mandir}/man8/*
 
 %if %{with x}
