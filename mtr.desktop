@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Traceroute
+Type=Application
+Comment=Matt's Traceroute - network diagnostic tool
+Comment[pl]=Matt's Traceroute - narzêdzie do diagnostyki sieci
+Exec=mtr
+Icon=mtr.png
+Terminal=false
