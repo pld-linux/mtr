@@ -133,10 +133,10 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 %patch3 -p1
 
 %build
-autoheader
-aclocal
-%{__autoconf}
 rm -f missing
+%{__aclocal}
+%{__autoheader}
+%{__autoconf}
 %{__automake}
 
 %configure \
