@@ -8,7 +8,7 @@ Group(pl):	Sieciowe/Narzêdzia
 Copyright:	GPL
 Source:		ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
 Patch0:		mtr-resolv.patch
-BuildPrereq:	gtk+-devel 
+BuildRequires:	gtk+-devel 
 URL:		http://www.mkimball.org/mtr.html
 Buildroot:	/tmp/%{name}-%{version}-root
 
