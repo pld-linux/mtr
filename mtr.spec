@@ -13,7 +13,7 @@ BuildRequires:	gtk+-devel
 BuildRequires:	ncurses-devel >= 5.0
 Icon:		mtr.gif
 URL:		http://www.bitwizard.nl/mtr/
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 mtr combines the functionality of the 'traceroute' and 'ping'
