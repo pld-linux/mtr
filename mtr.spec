@@ -15,6 +15,7 @@ Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
+# SOurce0-md5:	7f7ecb50fc37fedb13135a5ef80fda7d
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-resolv.patch
