@@ -1,0 +1,12 @@
+diff -ru mtr-0.42/Makefile.am mtr-0.42.AX/Makefile.am
+--- mtr-0.42/Makefile.am	Sat Mar  4 08:46:55 2000
++++ mtr-0.42.AX/Makefile.am	Sat Mar 18 23:56:32 2000
+@@ -3,7 +3,7 @@
+ sbin_PROGRAMS = mtr
+ man_MANS = mtr.8
+ install-exec-am: 
+-	chmod u+s $(sbindir)/mtr
++	chmod u+x $(DESTDIR)/$(sbindir)/mtr
+ 
+ mtr_SOURCES = mtr.c \
+               net.c net.h \
