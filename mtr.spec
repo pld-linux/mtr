@@ -31,7 +31,6 @@ tekstowym (ncurses) oraz obs³ug± X Window (Gtk).
 %patch1 -p1
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 %configure
 %{__make}
 
@@ -40,8 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man8/* \
-	AUTHORS NEWS README SECURITY
+gzip -9nf AUTHORS NEWS README SECURITY
 
 %clean
 rm -rf $RPM_BUILD_ROOT
