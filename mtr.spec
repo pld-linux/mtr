@@ -7,7 +7,6 @@ Group:		Networking/Utilities
 Group(pl):	Sieciowe/Narzêdzia
 Copyright:	GPL
 Source:		ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
-Patch:		mtr-resolv.patch
 Requires:	glib = 1.2.0
 URL:		http://www.mkimball.org/mtr.html
 Buildroot:	/tmp/%{name}-%{version}-root
