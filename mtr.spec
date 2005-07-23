@@ -10,7 +10,7 @@ Summary(ru):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
 Name:		mtr
 Version:	0.69
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -21,6 +21,7 @@ Source2:	%{name}.png
 Patch0:		%{name}-Makefile.patch
 Patch1:		%{name}-resolv.patch
 Patch2:		%{name}-mtr6.patch
+Patch3:		%{name}-address.patch
 Icon:		mtr.xpm
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
@@ -134,6 +135,7 @@ mtr - це traceroute та ping в одному флакон╕. При запуску mtr
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4
 %{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK_2_0],[$3])' >> acinclude.m4}
