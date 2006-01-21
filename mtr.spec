@@ -23,7 +23,6 @@ Patch1:		%{name}-resolv.patch
 Patch2:		%{name}-mtr6.patch
 Patch3:		%{name}-address.patch
 Patch4:		%{name}-display.patch
-Icon:		mtr.xpm
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
 BuildRequires:	automake
