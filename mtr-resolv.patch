@@ -1,17 +1,19 @@
---- mtr-0.64/configure.in.orig	2004-08-15 22:53:24.000000000 +0200
-+++ mtr-0.64/configure.in	2004-08-21 20:35:42.554816840 +0200
-@@ -81,9 +81,11 @@
+--- mtr-0.71/configure.in.orig	2006-03-24 07:37:17.000000000 +0100
++++ mtr-0.71/configure.in	2006-03-25 16:00:03.264992250 +0100
+@@ -85,11 +85,11 @@
  AC_CHECK_FUNCS(seteuid)
  #  AC_CHECK_FUNC(setuid, , AC_MSG_ERROR (I Need either seteuid or setuid))
  
 -AC_CHECK_FUNC(res_mkquery, , 
 -  AC_CHECK_LIB(bind, res_mkquery, , 
--   AC_CHECK_LIB(resolv, res_mkquery, , AC_MSG_ERROR(No resolver library found))))
+-   AC_CHECK_LIB(resolv, res_mkquery, ,
+-     AC_CHECK_LIB(resolv, __res_mkquery, , AC_MSG_ERROR(No resolver library found)))))
+-LIBS="$LIBS -lresolv"
 +AC_CHECK_FUNC(res_mkquery, ,[
 + AC_CHECK_FUNC(__res_mkquery, ,[
 +  AC_CHECK_LIB(resolv, res_mkquery, ,[
 +   AC_CHECK_LIB(resolv, __res_mkquery, ,[
-+    AC_CHECK_LIB(bind, res_mkquery, , [AC_MSG_ERROR(No resolver library found)])])])])])
++     AC_CHECK_LIB(bind, res_mkquery, , [AC_MSG_ERROR(No resolver library found)])])])])])
  
  AC_CHECK_FUNC(herror, , AC_DEFINE(NO_HERROR))
  AC_CHECK_FUNC(strerror, , AC_DEFINE(NO_STRERROR))
