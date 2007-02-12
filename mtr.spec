@@ -3,11 +3,11 @@
 %bcond_without	x	# without X11/GTK+2 version
 #
 Summary:	Matt's Traceroute - network diagnostic tool
-Summary(es):	Herramienta para diagnСstico de red, combinando ping/traceroute
-Summary(pl):	Matt's Traceroute - narzЙdzie do diagnostyki sieci
-Summary(pt_BR):	Ferramenta para diagnСstico da rede, combinando ping/traceroute
-Summary(ru):	Matt's Traceroute - утилита для диагностики сети
-Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
+Summary(es.UTF-8):   Herramienta para diagnцЁstico de red, combinando ping/traceroute
+Summary(pl.UTF-8):   Matt's Traceroute - narzд≥dzie do diagnostyki sieci
+Summary(pt_BR.UTF-8):   Ferramenta para diagnцЁstico da rede, combinando ping/traceroute
+Summary(ru.UTF-8):   Matt's Traceroute - я┐я┌п╦п╩п╦я┌п╟ п╢п╩я▐ п╢п╦п╟пЁп╫п╬я│я┌п╦п╨п╦ я│п╣я┌п╦
+Summary(uk.UTF-8):   Matt's Traceroute - я┐я┌п╦п╩я√я┌п╟ п╢п╩я▐ п╢я√п╟пЁп╫п╬я│я┌п╦п╨п╦ п╪п╣я─п╣п╤я√
 Name:		mtr
 Version:	0.72
 Release:	1
@@ -40,48 +40,48 @@ machines, it sends a sequence ICMP ECHO requests to each one to
 determine the quality of the link to each machine. As it does this, it
 prints running statistics about each machine.
 
-%description -l es
-mtr es una herramienta para diagnСstico de la red que combina ping y
-traceroute en un programa. Tiene dos interfaces, una ncurses, Зtil
+%description -l es.UTF-8
+mtr es una herramienta para diagnцЁstico de la red que combina ping y
+traceroute en un programa. Tiene dos interfaces, una ncurses, ц╨til
 para uso en sesiones telnet/ssh y una GTK+ para uso en el X Window.
 
-%description -l pl
-mtr jest narzЙdziem do diagnostyki sieci, Ё╠cz╠cym funkcje
-traceroute'a oraz pinga. Program ten ╤ledzi trasЙ poЁ╠czenia miЙdzy
-punktem z ktСrego zostaЁ uruchomiony, a punktem docelowym. Po
-skompletowaniu listy punktСw po╤rednich przez ktСre przechodz╠ pakiety
-miЙdzy tymi punktami do ka©dego z nich wysyЁane s╠ pakiety ICMP ECHO i
-czasy odpowiedzi s╠ nastЙpnie prezentowane na bie©╠co.
+%description -l pl.UTF-8
+mtr jest narzд≥dziem do diagnostyki sieci, е┌д┘czд┘cym funkcje
+traceroute'a oraz pinga. Program ten е⌡ledzi trasд≥ poе┌д┘czenia miд≥dzy
+punktem z ktцЁrego zostaе┌ uruchomiony, a punktem docelowym. Po
+skompletowaniu listy punktцЁw poе⌡rednich przez ktцЁre przechodzд┘ pakiety
+miд≥dzy tymi punktami do kaе╪dego z nich wysyе┌ane sд┘ pakiety ICMP ECHO i
+czasy odpowiedzi sд┘ nastд≥pnie prezentowane na bieе╪д┘co.
 
-%description -l pt_BR
-O mtr И uma ferramenta para diagnСstico da rede que combina ping e
-traceroute em um programa. Tem duas interfaces, uma ncurses, Зtil para
-uso em sessУes telnet/ssh e uma GTK+ para uso no X Window.
+%description -l pt_BR.UTF-8
+O mtr ц╘ uma ferramenta para diagnцЁstico da rede que combina ping e
+traceroute em um programa. Tem duas interfaces, uma ncurses, ц╨til para
+uso em sessц╣es telnet/ssh e uma GTK+ para uso no X Window.
 
-%description -l ru
-mtr - это traceroute и ping в одном флаконе. При старте mtr исследует
-сетевое соединение между машиной, на которой он запущен, и машиной,
-заданной пользователем. После того, как он определит адреса каждого
-хопа между этими двумя машинами, mtr посылает последовательность ICMP
-ECHO запросов на каждый из хопов для определения качества линка с
-каждой из машин. По мере того, как он это делает, mtr выводит текущую
-статистику по каждой машине.
+%description -l ru.UTF-8
+mtr - я█я┌п╬ traceroute п╦ ping п╡ п╬п╢п╫п╬п╪ я└п╩п╟п╨п╬п╫п╣. п÷я─п╦ я│я┌п╟я─я┌п╣ mtr п╦я│я│п╩п╣п╢я┐п╣я┌
+я│п╣я┌п╣п╡п╬п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣ п╪п╣п╤п╢я┐ п╪п╟я┬п╦п╫п╬п╧, п╫п╟ п╨п╬я┌п╬я─п╬п╧ п╬п╫ п╥п╟п©я┐я┴п╣п╫, п╦ п╪п╟я┬п╦п╫п╬п╧,
+п╥п╟п╢п╟п╫п╫п╬п╧ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩п╣п╪. п÷п╬я│п╩п╣ я┌п╬пЁп╬, п╨п╟п╨ п╬п╫ п╬п©я─п╣п╢п╣п╩п╦я┌ п╟п╢я─п╣я│п╟ п╨п╟п╤п╢п╬пЁп╬
+я┘п╬п©п╟ п╪п╣п╤п╢я┐ я█я┌п╦п╪п╦ п╢п╡я┐п╪я▐ п╪п╟я┬п╦п╫п╟п╪п╦, mtr п©п╬я│я▀п╩п╟п╣я┌ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬я│я┌я▄ ICMP
+ECHO п╥п╟п©я─п╬я│п╬п╡ п╫п╟ п╨п╟п╤п╢я▀п╧ п╦п╥ я┘п╬п©п╬п╡ п╢п╩я▐ п╬п©я─п╣п╢п╣п╩п╣п╫п╦я▐ п╨п╟я┤п╣я│я┌п╡п╟ п╩п╦п╫п╨п╟ я│
+п╨п╟п╤п╢п╬п╧ п╦п╥ п╪п╟я┬п╦п╫. п÷п╬ п╪п╣я─п╣ я┌п╬пЁп╬, п╨п╟п╨ п╬п╫ я█я┌п╬ п╢п╣п╩п╟п╣я┌, mtr п╡я▀п╡п╬п╢п╦я┌ я┌п╣п╨я┐я┴я┐я▌
+я│я┌п╟я┌п╦я│я┌п╦п╨я┐ п©п╬ п╨п╟п╤п╢п╬п╧ п╪п╟я┬п╦п╫п╣.
 
-%description -l uk
-mtr - це traceroute та ping в одному флакон╕. При запуску mtr
-досл╕джу╓ мережеве з'╓днання м╕ж машиною, на як╕й в╕н запущений та
-заданою користувачем. П╕сля визначення адрес кожного хопу м╕ж цими
-двома машинами, mtr посила╓ посл╕довн╕сть ICMP ECHO запит╕в на кожний
-з хоп╕в для визначення якост╕ л╕нка до кожно╖ з машин. В ход╕ цього
-процесу mtr виводить поточну статистику по кожн╕й машин╕.
+%description -l uk.UTF-8
+mtr - я├п╣ traceroute я┌п╟ ping п╡ п╬п╢п╫п╬п╪я┐ я└п╩п╟п╨п╬п╫я√. п÷я─п╦ п╥п╟п©я┐я│п╨я┐ mtr
+п╢п╬я│п╩я√п╢п╤я┐я■ п╪п╣я─п╣п╤п╣п╡п╣ п╥'я■п╢п╫п╟п╫п╫я▐ п╪я√п╤ п╪п╟я┬п╦п╫п╬я▌, п╫п╟ я▐п╨я√п╧ п╡я√п╫ п╥п╟п©я┐я┴п╣п╫п╦п╧ я┌п╟
+п╥п╟п╢п╟п╫п╬я▌ п╨п╬я─п╦я│я┌я┐п╡п╟я┤п╣п╪. п÷я√я│п╩я▐ п╡п╦п╥п╫п╟я┤п╣п╫п╫я▐ п╟п╢я─п╣я│ п╨п╬п╤п╫п╬пЁп╬ я┘п╬п©я┐ п╪я√п╤ я├п╦п╪п╦
+п╢п╡п╬п╪п╟ п╪п╟я┬п╦п╫п╟п╪п╦, mtr п©п╬я│п╦п╩п╟я■ п©п╬я│п╩я√п╢п╬п╡п╫я√я│я┌я▄ ICMP ECHO п╥п╟п©п╦я┌я√п╡ п╫п╟ п╨п╬п╤п╫п╦п╧
+п╥ я┘п╬п©я√п╡ п╢п╩я▐ п╡п╦п╥п╫п╟я┤п╣п╫п╫я▐ я▐п╨п╬я│я┌я√ п╩я√п╫п╨п╟ п╢п╬ п╨п╬п╤п╫п╬я≈ п╥ п╪п╟я┬п╦п╫. п▓ я┘п╬п╢я√ я├я▄п╬пЁп╬
+п©я─п╬я├п╣я│я┐ mtr п╡п╦п╡п╬п╢п╦я┌я▄ п©п╬я┌п╬я┤п╫я┐ я│я┌п╟я┌п╦я│я┌п╦п╨я┐ п©п╬ п╨п╬п╤п╫я√п╧ п╪п╟я┬п╦п╫я√.
 
 %package X11
 Summary:	Matt's Traceroute - network diagnostic tool, X11 version
-Summary(es):	Interface GTK+ para mtr
-Summary(pl):	Matt's Traceroute - narzЙdzie do diagnostyki sieci, wersja X11
-Summary(pt_BR):	Interface GTK+ para o mtr
-Summary(ru):	Matt's Traceroute - утилита для диагностики сети
-Summary(uk):	Matt's Traceroute - утил╕та для д╕агностики мереж╕
+Summary(es.UTF-8):   Interface GTK+ para mtr
+Summary(pl.UTF-8):   Matt's Traceroute - narzд≥dzie do diagnostyki sieci, wersja X11
+Summary(pt_BR.UTF-8):   Interface GTK+ para o mtr
+Summary(ru.UTF-8):   Matt's Traceroute - я┐я┌п╦п╩п╦я┌п╟ п╢п╩я▐ п╢п╦п╟пЁп╫п╬я│я┌п╦п╨п╦ я│п╣я┌п╦
+Summary(uk.UTF-8):   Matt's Traceroute - я┐я┌п╦п╩я√я┌п╟ п╢п╩я▐ п╢я√п╟пЁп╫п╬я│я┌п╦п╨п╦ п╪п╣я─п╣п╤я√
 Group:		Networking/Utilities
 Obsoletes:	mtr-gtk
 
@@ -94,40 +94,40 @@ machines, it sends a sequence ICMP ECHO requests to each one to
 determine the quality of the link to each machine. As it does this, it
 prints running statistics about each machine.
 
-%description X11 -l es
-mtr es una herramienta para diagnСstico de la red que combina ping y
-traceroute en un programa. Tiene dos interfaces, una ncurses, Зtil
+%description X11 -l es.UTF-8
+mtr es una herramienta para diagnцЁstico de la red que combina ping y
+traceroute en un programa. Tiene dos interfaces, una ncurses, ц╨til
 para uso en sesiones telnet/ssh y una GTK+ para uso en el X Window.
 
-%description X11 -l pl
-mtr jest narzЙdziem do diagnostyki sieci, Ё╠cz╠cym funkcje
-traceroute'a oraz pinga. Program ten ╤ledzi trasЙ poЁ╠czenia miЙdzy
-punktem z ktСrego zostaЁ uruchomiony, a punktem docelowym. Po
-skompletowaniu listy punktСw po╤rednich przez ktСre przechodz╠ pakiety
-miЙdzy tymi punktami do ka©dego z nich wysyЁane s╠ pakiety ICMP ECHO i
-czasy odpowiedzi s╠ nastЙpnie prezentowane na bie©╠co.
+%description X11 -l pl.UTF-8
+mtr jest narzд≥dziem do diagnostyki sieci, е┌д┘czд┘cym funkcje
+traceroute'a oraz pinga. Program ten е⌡ledzi trasд≥ poе┌д┘czenia miд≥dzy
+punktem z ktцЁrego zostaе┌ uruchomiony, a punktem docelowym. Po
+skompletowaniu listy punktцЁw poе⌡rednich przez ktцЁre przechodzд┘ pakiety
+miд≥dzy tymi punktami do kaе╪dego z nich wysyе┌ane sд┘ pakiety ICMP ECHO i
+czasy odpowiedzi sд┘ nastд≥pnie prezentowane na bieе╪д┘co.
 
-%description X11 -l pt_BR
-O mtr И uma ferramenta para diagnСstico da rede que combina ping e
-traceroute em um programa. Tem duas interfaces, uma ncurses, Зtil para
-uso em sessУes telnet/ssh e uma GTK+ para uso no X Window.
+%description X11 -l pt_BR.UTF-8
+O mtr ц╘ uma ferramenta para diagnцЁstico da rede que combina ping e
+traceroute em um programa. Tem duas interfaces, uma ncurses, ц╨til para
+uso em sessц╣es telnet/ssh e uma GTK+ para uso no X Window.
 
-%description X11 -l ru
-mtr - это traceroute и ping в одном флаконе. При старте mtr исследует
-сетевое соединение между машиной, на которой он запущен, и машиной,
-заданной пользователем. После того, как он определит адреса каждого
-хопа между этими двумя машинами, mtr посылает последовательность ICMP
-ECHO запросов на каждый из хопов для определения качества линка с
-каждой из машин. По мере того, как он это делает, mtr выводит текущую
-статистику по каждой машине.
+%description X11 -l ru.UTF-8
+mtr - я█я┌п╬ traceroute п╦ ping п╡ п╬п╢п╫п╬п╪ я└п╩п╟п╨п╬п╫п╣. п÷я─п╦ я│я┌п╟я─я┌п╣ mtr п╦я│я│п╩п╣п╢я┐п╣я┌
+я│п╣я┌п╣п╡п╬п╣ я│п╬п╣п╢п╦п╫п╣п╫п╦п╣ п╪п╣п╤п╢я┐ п╪п╟я┬п╦п╫п╬п╧, п╫п╟ п╨п╬я┌п╬я─п╬п╧ п╬п╫ п╥п╟п©я┐я┴п╣п╫, п╦ п╪п╟я┬п╦п╫п╬п╧,
+п╥п╟п╢п╟п╫п╫п╬п╧ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩п╣п╪. п÷п╬я│п╩п╣ я┌п╬пЁп╬, п╨п╟п╨ п╬п╫ п╬п©я─п╣п╢п╣п╩п╦я┌ п╟п╢я─п╣я│п╟ п╨п╟п╤п╢п╬пЁп╬
+я┘п╬п©п╟ п╪п╣п╤п╢я┐ я█я┌п╦п╪п╦ п╢п╡я┐п╪я▐ п╪п╟я┬п╦п╫п╟п╪п╦, mtr п©п╬я│я▀п╩п╟п╣я┌ п©п╬я│п╩п╣п╢п╬п╡п╟я┌п╣п╩я▄п╫п╬я│я┌я▄ ICMP
+ECHO п╥п╟п©я─п╬я│п╬п╡ п╫п╟ п╨п╟п╤п╢я▀п╧ п╦п╥ я┘п╬п©п╬п╡ п╢п╩я▐ п╬п©я─п╣п╢п╣п╩п╣п╫п╦я▐ п╨п╟я┤п╣я│я┌п╡п╟ п╩п╦п╫п╨п╟ я│
+п╨п╟п╤п╢п╬п╧ п╦п╥ п╪п╟я┬п╦п╫. п÷п╬ п╪п╣я─п╣ я┌п╬пЁп╬, п╨п╟п╨ п╬п╫ я█я┌п╬ п╢п╣п╩п╟п╣я┌, mtr п╡я▀п╡п╬п╢п╦я┌ я┌п╣п╨я┐я┴я┐я▌
+я│я┌п╟я┌п╦я│я┌п╦п╨я┐ п©п╬ п╨п╟п╤п╢п╬п╧ п╪п╟я┬п╦п╫п╣.
 
-%description X11 -l uk
-mtr - це traceroute та ping в одному флакон╕. При запуску mtr
-досл╕джу╓ мережеве з'╓днання м╕ж машиною, на як╕й в╕н запущений та
-заданою користувачем. П╕сля визначення адрес кожного хопу м╕ж цими
-двома машинами, mtr посила╓ посл╕довн╕сть ICMP ECHO запит╕в на кожний
-з хоп╕в для визначення якост╕ л╕нка до кожно╖ з машин. В ход╕ цього
-процесу mtr виводить поточну статистику по кожн╕й машин╕.
+%description X11 -l uk.UTF-8
+mtr - я├п╣ traceroute я┌п╟ ping п╡ п╬п╢п╫п╬п╪я┐ я└п╩п╟п╨п╬п╫я√. п÷я─п╦ п╥п╟п©я┐я│п╨я┐ mtr
+п╢п╬я│п╩я√п╢п╤я┐я■ п╪п╣я─п╣п╤п╣п╡п╣ п╥'я■п╢п╫п╟п╫п╫я▐ п╪я√п╤ п╪п╟я┬п╦п╫п╬я▌, п╫п╟ я▐п╨я√п╧ п╡я√п╫ п╥п╟п©я┐я┴п╣п╫п╦п╧ я┌п╟
+п╥п╟п╢п╟п╫п╬я▌ п╨п╬я─п╦я│я┌я┐п╡п╟я┤п╣п╪. п÷я√я│п╩я▐ п╡п╦п╥п╫п╟я┤п╣п╫п╫я▐ п╟п╢я─п╣я│ п╨п╬п╤п╫п╬пЁп╬ я┘п╬п©я┐ п╪я√п╤ я├п╦п╪п╦
+п╢п╡п╬п╪п╟ п╪п╟я┬п╦п╫п╟п╪п╦, mtr п©п╬я│п╦п╩п╟я■ п©п╬я│п╩я√п╢п╬п╡п╫я√я│я┌я▄ ICMP ECHO п╥п╟п©п╦я┌я√п╡ п╫п╟ п╨п╬п╤п╫п╦п╧
+п╥ я┘п╬п©я√п╡ п╢п╩я▐ п╡п╦п╥п╫п╟я┤п╣п╫п╫я▐ я▐п╨п╬я│я┌я√ п╩я√п╫п╨п╟ п╢п╬ п╨п╬п╤п╫п╬я≈ п╥ п╪п╟я┬п╦п╫. п▓ я┘п╬п╢я√ я├я▄п╬пЁп╬
+п©я─п╬я├п╣я│я┐ mtr п╡п╦п╡п╬п╢п╦я┌я▄ п©п╬я┌п╬я┤п╫я┐ я│я┌п╟я┌п╦я│я┌п╦п╨я┐ п©п╬ п╨п╬п╤п╫я√п╧ п╪п╟я┬п╦п╫я√.
 
 %prep
 %setup -q
