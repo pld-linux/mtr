@@ -3,11 +3,11 @@
 %bcond_without	x	# without X11/GTK+2 version
 #
 Summary:	Matt's Traceroute - network diagnostic tool
-Summary(es.UTF-8):   Herramienta para diagnóstico de red, combinando ping/traceroute
-Summary(pl.UTF-8):   Matt's Traceroute - narzędzie do diagnostyki sieci
-Summary(pt_BR.UTF-8):   Ferramenta para diagnóstico da rede, combinando ping/traceroute
-Summary(ru.UTF-8):   Matt's Traceroute - утилита для диагностики сети
-Summary(uk.UTF-8):   Matt's Traceroute - утиліта для діагностики мережі
+Summary(es.UTF-8):	Herramienta para diagnóstico de red, combinando ping/traceroute
+Summary(pl.UTF-8):	Matt's Traceroute - narzędzie do diagnostyki sieci
+Summary(pt_BR.UTF-8):	Ferramenta para diagnóstico da rede, combinando ping/traceroute
+Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагностики сети
+Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
 Version:	0.72
 Release:	1
@@ -77,11 +77,11 @@ mtr - це traceroute та ping в одному флаконі. При запу�
 
 %package X11
 Summary:	Matt's Traceroute - network diagnostic tool, X11 version
-Summary(es.UTF-8):   Interface GTK+ para mtr
-Summary(pl.UTF-8):   Matt's Traceroute - narzędzie do diagnostyki sieci, wersja X11
-Summary(pt_BR.UTF-8):   Interface GTK+ para o mtr
-Summary(ru.UTF-8):   Matt's Traceroute - утилита для диагностики сети
-Summary(uk.UTF-8):   Matt's Traceroute - утиліта для діагностики мережі
+Summary(es.UTF-8):	Interface GTK+ para mtr
+Summary(pl.UTF-8):	Matt's Traceroute - narzędzie do diagnostyki sieci, wersja X11
+Summary(pt_BR.UTF-8):	Interface GTK+ para o mtr
+Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагностики сети
+Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Group:		Networking/Utilities
 Obsoletes:	mtr-gtk
 
