@@ -10,7 +10,7 @@ Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагности�
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
 Version:	0.72
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
