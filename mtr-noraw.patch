@@ -1,0 +1,15 @@
+diff -urN mtr-0.72.org/net.c mtr-0.72/net.c
+--- mtr-0.72.org/net.c	2006-09-29 21:31:01.000000000 +0200
++++ mtr-0.72/net.c	2008-03-12 21:20:48.577371533 +0100
+@@ -757,11 +757,7 @@
+ {
+   int trueopt = 1;
+ 
+-#if !defined(IP_HDRINCL) && defined(IP_TOS) && defined(IP_TTL)
+   sendsock4 = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+-#else
+-  sendsock4 = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
+-#endif
+   if (sendsock4 < 0) 
+     return -1;
+ #ifdef ENABLE_IPV6
