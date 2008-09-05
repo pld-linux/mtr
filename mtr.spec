@@ -27,7 +27,7 @@ Patch5:		%{name}-noraw.patch
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_x:BuildRequires:	gtk+2-devel >= 1:2.4.0}
+%{?with_x:BuildRequires:	gtk+2-devel >= 2:2.4.0}
 BuildRequires:	ncurses-devel >= 5.2
 %{?with_x:BuildRequires:	pkgconfig}
 Obsoletes:	mtr-ncurses
