@@ -1,7 +1,7 @@
-diff -urN mtr-0.72.org/net.c mtr-0.72/net.c
---- mtr-0.72.org/net.c	2006-09-29 21:31:01.000000000 +0200
-+++ mtr-0.72/net.c	2008-03-12 21:26:21.779967188 +0100
-@@ -252,7 +252,6 @@
+diff -ur mtr-0.74/net.c mtr-0.74.new/net.c
+--- mtr-0.74/net.c	2008-08-19 18:55:48.000000000 +0200
++++ mtr-0.74.new/net.c	2008-09-05 15:26:53.588144321 +0200
+@@ -305,7 +305,6 @@
  
    switch ( af ) {
    case AF_INET:
@@ -9,7 +9,7 @@ diff -urN mtr-0.72.org/net.c mtr-0.72/net.c
      iphsize = 0;
      if ( setsockopt( sendsock, IPPROTO_IP, IP_TOS, &tos, sizeof tos ) ) {
        perror( "setsockopt IP_TOS" );
-@@ -262,22 +261,6 @@
+@@ -315,22 +314,6 @@
        perror( "setsockopt IP_TTL" );
        exit( EXIT_FAILURE );
      }    
@@ -22,7 +22,7 @@ diff -urN mtr-0.72.org/net.c mtr-0.72/net.c
 -  ip->id = 0;
 -  ip->frag = 0;    /* 1, if want to find mtu size? Min */
 -    ip->ttl = ttl;
--  ip->protocol = IPPROTO_ICMP;
+-  ip->protocol = mtrtype;
 -  ip->check = 0;
 -
 -  /* BSD needs the source address here, Linux & others do not... */
@@ -32,19 +32,21 @@ diff -urN mtr-0.72.org/net.c mtr-0.72/net.c
      echotype = ICMP_ECHO;
      salen = sizeof (struct sockaddr_in);
      break;
-@@ -757,26 +740,13 @@
+@@ -900,12 +883,8 @@
  {
    int trueopt = 1;
  
 -#if !defined(IP_HDRINCL) && defined(IP_TOS) && defined(IP_TTL)
-   sendsock4 = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+   sendsock4_icmp = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+   sendsock4_udp = socket(AF_INET, SOCK_RAW, IPPROTO_UDP);
 -#else
 -  sendsock4 = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
 -#endif
    if (sendsock4 < 0) 
      return -1;
  #ifdef ENABLE_IPV6
-   sendsock6 = socket(AF_INET6, SOCK_RAW, IPPROTO_ICMPV6);
+@@ -913,15 +892,6 @@
+   sendsock6_udp = socket(AF_INET6, SOCK_RAW, IPPROTO_UDP);
  #endif
  
 -#ifdef IP_HDRINCL
@@ -59,3 +61,4 @@ diff -urN mtr-0.72.org/net.c mtr-0.72/net.c
    recvsock4 = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
    if (recvsock4 < 0)
      return -1;
+Tylko w mtr-0.74.new/: net.c~
