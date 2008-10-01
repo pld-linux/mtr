@@ -61,4 +61,21 @@ diff -ur mtr-0.74/net.c mtr-0.74.new/net.c
    recvsock4 = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
    if (recvsock4 < 0)
      return -1;
-Tylko w mtr-0.74.new/: net.c~
+--- mtr/net.c~	2008-10-01 08:04:08.602202495 +0200
++++ mtr/net.c	2008-10-01 08:12:30.956110370 +0200
+@@ -905,7 +905,6 @@
+ 
+ int net_selectsocket(void)
+ {
+-#if !defined(IP_HDRINCL) && defined(IP_TOS) && defined(IP_TTL)
+   switch ( mtrtype ) {
+   case IPPROTO_ICMP:
+     sendsock4 = sendsock4_icmp;
+@@ -914,7 +913,6 @@
+     sendsock4 = sendsock4_udp;
+     break;
+   }
+-#endif
+   if (sendsock4 < 0)
+     return -1;
+ #ifdef ENABLE_IPV6
