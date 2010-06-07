@@ -1,9 +1,9 @@
 --- mtr.c~	2008-01-05 14:51:56.000000000 +0100
 +++ mtr.c	2008-01-05 14:57:54.940603328 +0100
 @@ -367,6 +367,7 @@
- 	   "\t\t[--report-cycles=COUNT] [--curses] [--gtk]\n"
             "\t\t[--raw] [--split] [--no-dns] [--address interface]\n" /* BL */
             "\t\t[--psize=bytes/-s bytes]\n"            /* ok */
+            "\t\t[--report-wide|-w] [-u]\n"            /* rew */
 +           "\t\t[-f FIRSTHOP] [-m MAXHOP]\n"            /* first and max hop */
  	   "\t\t[--interval=SECONDS] HOSTNAME [PACKETSIZE]\n", argv[0]);
      exit(0);

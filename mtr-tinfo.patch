@@ -1,0 +1,13 @@
+--- mtr-0.78/configure.in~	2010-06-07 18:26:11.220302104 +0200
++++ mtr-0.78/configure.in	2010-06-07 18:28:29.062301450 +0200
+@@ -35,6 +35,10 @@
+ 	AC_DEFINE(NO_CURSES, 1, Define if you don't have the curses libraries available.)
+ 	CURSES_OBJ=))))
+ 
++if test "x$CURSES_OBJ" != "x"; then
++	LIBS="$LIBS -ltinfo"
++fi
++
+ AC_CHECK_FUNCS(attron fcntl)
+ 
+ AC_CHECK_LIB(m, floor, , AC_MSG_ERROR(No math library found))
