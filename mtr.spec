@@ -9,13 +9,13 @@ Summary(pt_BR.UTF-8):	Ferramenta para diagnóstico da rede, combinando ping/trac
 Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
-Version:	0.80
-Release:	3
+Version:	0.81
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
-# Source0-md5:	fa68528eaec1757f52bacf9fea8c68a9
+# Source0-md5:	b7a7914f1fc1b5a21ab10bdca44356e1
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-Makefile.patch
