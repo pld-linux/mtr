@@ -24,8 +24,8 @@ Patch2:		%{name}-mtr6.patch
 Patch3:		%{name}-display.patch
 Patch4:		%{name}-usage_first_max_hop.patch
 Patch5:		%{name}-noraw.patch
-Patch6:		%{name}-tinfo.patch
 URL:		http://www.bitwizard.nl/mtr/
+Patch6:		%{name}-tinfo.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_x:BuildRequires:	gtk+2-devel >= 2:2.6.0}
@@ -140,7 +140,6 @@ mtr - це traceroute та ping в одному флаконі. При запу�
 %patch3 -p1
 %patch4 -p0
 %patch5 -p1
-%patch6 -p1
 
 echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4
 %{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK_2_0],[$3])' >> acinclude.m4}
