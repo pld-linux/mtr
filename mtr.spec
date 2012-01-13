@@ -25,7 +25,6 @@ Patch3:		%{name}-display.patch
 Patch4:		%{name}-usage_first_max_hop.patch
 Patch5:		%{name}-noraw.patch
 URL:		http://www.bitwizard.nl/mtr/
-Patch6:		%{name}-tinfo.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_x:BuildRequires:	gtk+2-devel >= 2:2.6.0}
