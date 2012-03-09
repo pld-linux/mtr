@@ -10,7 +10,7 @@ Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагности�
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
 Version:	0.82
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -190,15 +190,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README SECURITY
-%attr(4754,root,adm) %{_bindir}/mtr
-%attr(4754,root,adm) %{_bindir}/mtr6
+%attr(4755,root,root) %{_bindir}/mtr
+%attr(4755,root,root) %{_bindir}/mtr6
 %{_sbindir}/mtr
 %{_mandir}/man8/*
 
 %if %{with x}
 %files X11
 %defattr(644,root,root,755)
-%attr(4754,root,adm) %{_bindir}/mtr-gtk
+%attr(4755,root,root) %{_bindir}/mtr-gtk
 %{_sbindir}/mtr-gtk
 %{_desktopdir}/mtr.desktop
 %{_pixmapsdir}/mtr.png
