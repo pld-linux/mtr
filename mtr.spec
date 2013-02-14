@@ -9,13 +9,13 @@ Summary(pt_BR.UTF-8):	Ferramenta para diagnóstico da rede, combinando ping/trac
 Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
-Version:	0.82
-Release:	2
+Version:	0.83
+Release:	1
 Epoch:		1
-License:	GPL
+License:	GPL v2
 Group:		Networking/Utilities
 Source0:	ftp://ftp.bitwizard.nl/mtr/%{name}-%{version}.tar.gz
-# Source0-md5:	10601ea543fda3e51545c4bce195b64c
+# Source0-md5:	2e3a40f2da47748ad0053a5d678b9b4a
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-Makefile.patch
@@ -24,13 +24,16 @@ Patch2:		%{name}-mtr6.patch
 Patch3:		%{name}-display.patch
 Patch4:		%{name}-usage_first_max_hop.patch
 Patch5:		%{name}-noraw.patch
+Patch6:		%{name}-nox.patch
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	glib2-devel >= 1:2.6.0
 %{?with_x:BuildRequires:	gtk+2-devel >= 2:2.6.0}
 BuildRequires:	ncurses-devel >= 5.2
 %{?with_x:BuildRequires:	pkgconfig}
 Obsoletes:	mtr-ncurses
+Requires:	glib2 >= 1:2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -85,6 +88,7 @@ Summary(pt_BR.UTF-8):	Interface GTK+ para o mtr
 Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Group:		Networking/Utilities
+%{?with_x:Requires:	gtk+2 >= 2:2.6.0}
 Obsoletes:	mtr-gtk
 
 %description X11
@@ -139,8 +143,9 @@ mtr - це traceroute та ping в одному флаконі. При запу�
 %patch3 -p1
 %patch4 -p0
 %patch5 -p1
+%patch6 -p1
 
-echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4
+#echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4
 %{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK_2_0],[$3])' >> acinclude.m4}
 
 %build
@@ -193,7 +198,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(4755,root,root) %{_bindir}/mtr
 %attr(4755,root,root) %{_bindir}/mtr6
 %{_sbindir}/mtr
-%{_mandir}/man8/*
+%{_mandir}/man8/mtr.8*
 
 %if %{with x}
 %files X11
