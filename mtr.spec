@@ -26,7 +26,7 @@ Patch4:		%{name}-usage_first_max_hop.patch
 Patch5:		%{name}-noraw.patch
 Patch6:		%{name}-nox.patch
 URL:		http://www.bitwizard.nl/mtr/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 1:2.6.0
 %{?with_x:BuildRequires:	gtk+2-devel >= 2:2.6.0}
