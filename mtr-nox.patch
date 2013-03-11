@@ -1,5 +1,5 @@
---- mtr-0.83/configure.in.orig	2013-02-14 19:47:42.428664302 +0100
-+++ mtr-0.83/configure.in	2013-02-14 20:45:17.061852659 +0100
+--- mtr-0.83/configure.ac.orig	2013-02-14 19:47:42.428664302 +0100
++++ mtr-0.83/configure.ac	2013-02-14 20:45:17.061852659 +0100
 @@ -55,6 +55,8 @@
                     AC_DEFINE(NO_GTK, 1, [Define if you don't have the GTK+ libraries available.])
                             GTK_OBJ="")
