@@ -10,7 +10,7 @@ Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагности�
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
 Version:	0.86
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
@@ -22,7 +22,7 @@ Patch0:		%{name}-Makefile.patch
 
 Patch2:		%{name}-mtr6.patch
 Patch3:		%{name}-display.patch
-
+Patch4:		%{name}-curses-clear_colors.patch
 Patch5:		%{name}-noraw.patch
 Patch6:		%{name}-nox.patch
 URL:		http://www.bitwizard.nl/mtr/
@@ -141,7 +141,7 @@ mtr - це traceroute та ping в одному флаконі. При запу�
 
 %patch2 -p1
 %patch3 -p1
-
+%patch4 -p1
 %patch5 -p1
 %patch6 -p1
 

@@ -1,0 +1,11 @@
+diff -ruNp mtr-0.86.orig/curses.c mtr-0.86/curses.c
+--- mtr-0.86.orig/curses.c	2014-12-09 12:20:57.000000000 +0100
++++ mtr-0.86/curses.c	2016-01-10 05:43:56.278385752 +0100
+@@ -713,6 +713,7 @@ void mtr_curses_open(void)
+ void mtr_curses_close(void)
+ {  
+   printw("\n");
++  use_default_colors();
+   endwin();
+ }
+ 
