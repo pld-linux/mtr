@@ -1,11 +1,14 @@
---- mtr-0.69.orig/Makefile.am	2002-11-23 18:18:31.000000000 +0100
-+++ mtr-0.69/Makefile.am	2004-02-09 11:35:53.305046136 +0100
-@@ -2,8 +2,6 @@
+diff -u mtr-0.87.orig/Makefile.am mtr-0.87/Makefile.am
+--- mtr-0.87.orig/Makefile.am	2016-08-03 07:27:03.000000000 +0200
++++ mtr-0.87/Makefile.am	2017-01-12 18:55:47.832246506 +0100
+@@ -2,9 +2,6 @@
  
  sbin_PROGRAMS = mtr
  man_MANS = mtr.8
 -install-exec-hook: 
--	chmod u+s $(DESTDIR)$(sbindir)/mtr
+-	`setcap cap_net_raw+ep $(DESTDIR)$(sbindir)/mtr` \
+-	|| chmod u+s $(DESTDIR)$(sbindir)/mtr
  
  mtr_SOURCES = mtr.c \
                net.c net.h \
+Common subdirectories: mtr-0.87.orig/img and mtr-0.87/img
