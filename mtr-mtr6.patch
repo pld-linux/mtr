@@ -1,12 +1,12 @@
---- mtr-0.69/mtr.c.orig	2005-01-11 09:33:41.000000000 +0100
-+++ mtr-0.69/mtr.c	2005-01-22 17:51:44.051315016 +0100
-@@ -360,6 +360,9 @@
+--- mtr-0.92/ui/mtr.c~	2017-06-02 10:54:58.000000000 +0200
++++ mtr-0.92/ui/mtr.c	2017-08-13 10:33:42.063498074 +0200
+@@ -741,6 +741,9 @@ int main(
  
-   parse_mtr_options (getenv ("MTR_OPTIONS"));
+     parse_mtr_options(&ctl, &names_head, getenv("MTR_OPTIONS"));
  
-+  if ((strlen(argv[0]) > 3) && !strcmp(argv[0] + strlen(argv[0]) - 4, "mtr6"))
-+    af = AF_INET6;
++    if ((strlen(argv[0]) > 3) && !strcmp(argv[0] + strlen(argv[0]) - 4, "mtr6"))
++        ctl.af = AF_INET6;
 +
-   parse_arg (argc, argv);
+     parse_arg(&ctl, &names_head, argc, argv);
  
-   if (PrintVersion) {
+     while (optind < argc) {

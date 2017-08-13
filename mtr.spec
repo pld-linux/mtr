@@ -9,13 +9,13 @@ Summary(pt_BR.UTF-8):	Ferramenta para diagnóstico da rede, combinando ping/trac
 Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
-Version:	0.87
+Version:	0.92
 Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
 Source0:	https://github.com/traviscross/mtr/archive/v%{version}.tar.gz
-# Source0-md5:	23fa76f57fa67fbc95ecf4fb5901ff50
+# Source0-md5:	f764793302a6cee2bf1573b95db6f295
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-Makefile.patch
@@ -23,8 +23,6 @@ Patch0:		%{name}-Makefile.patch
 Patch2:		%{name}-mtr6.patch
 Patch3:		%{name}-display.patch
 Patch4:		%{name}-curses-clear_colors.patch
-Patch5:		%{name}-noraw.patch
-Patch6:		%{name}-nox.patch
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -34,6 +32,7 @@ BuildRequires:	ncurses-devel >= 5.2
 %{?with_x:BuildRequires:	pkgconfig}
 Obsoletes:	mtr-ncurses
 Requires:	glib2 >= 1:2.6.0
+Requires(post):	/sbin/setcap
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -142,8 +141,6 @@ mtr - це traceroute та ping в одному флаконі. При запу�
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
-%patch6 -p1
 
 #echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4
 %{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK_2_0],[$3])' >> acinclude.m4}
@@ -157,7 +154,8 @@ mtr - це traceroute та ping в одному флаконі. При запу�
 %if %{with x}
 %configure \
 	--with-gtk \
-	--enable-ipv6
+	--enable-ipv6 \
+	--disable-silent-rules
 
 %{__make}
 mv -f mtr mtr-gtk
@@ -166,7 +164,8 @@ mv -f mtr mtr-gtk
 
 %configure \
 	--without-gtk \
-	--enable-ipv6
+	--enable-ipv6 \
+	--disable-silent-rules
 
 %{__make}
 
@@ -192,13 +191,18 @@ ln -sf mtr $RPM_BUILD_ROOT%{_bindir}/mtr6
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+/sbin/setcap cap_net_raw+ep %{_bindir}/mtr-packet
+
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README SECURITY
-%attr(4755,root,root) %{_bindir}/mtr
-%attr(4755,root,root) %{_bindir}/mtr6
+%attr(755,root,root) %{_bindir}/mtr
+%attr(755,root,root) %{_bindir}/mtr6
+%attr(4755,root,root) %{_bindir}/mtr-packet
 %{_sbindir}/mtr
 %{_mandir}/man8/mtr.8*
+%{_mandir}/man8/mtr-packet.8*
 
 %if %{with x}
 %files X11
