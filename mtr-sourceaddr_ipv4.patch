@@ -1,0 +1,45 @@
+diff -ruNp mtr-0.92.orig/packet/construct_unix.c mtr-0.92/packet/construct_unix.c
+--- mtr-0.92.orig/packet/construct_unix.c	2017-06-02 10:54:58.000000000 +0200
++++ mtr-0.92/packet/construct_unix.c	2018-04-02 23:40:33.993584361 +0200
+@@ -491,6 +491,9 @@ int construct_ip4_packet(
+ {
+     int send_socket = net_state->platform.ip4_send_socket;
+     bool is_stream_protocol = false;
++    bool bind_send_socket = true;
++    struct sockaddr_storage current_sockaddr;
++    int current_sockaddr_len;
+ 
+     if (param->protocol == IPPROTO_TCP) {
+         is_stream_protocol = true;
+@@ -528,6 +531,31 @@ int construct_ip4_packet(
+     }
+ 
+     /*
++       Check the current socket address, and if it is the same
++       as the source address we intend, we will skip the bind.
++       This is to accomodate Solaris, which, as of Solaris 11.3,
++       will return an EINVAL error on bind if the socket is already
++       bound, even if the same address is used.
++     */
++    current_sockaddr_len = sizeof(struct sockaddr_in);
++    if (getsockname(send_socket, (struct sockaddr *) &current_sockaddr,
++                    &current_sockaddr_len) == 0) {
++
++        if (memcmp(&current_sockaddr,
++                   src_sockaddr, sizeof(struct sockaddr_in)) == 0) {
++            bind_send_socket = false;
++        }
++    }
++
++    /*  Bind to our local address  */
++    if (bind_send_socket) {
++        if (bind(send_socket, (struct sockaddr *) src_sockaddr,
++                 sizeof(struct sockaddr_in))) {
++            return -1;
++        }
++    }
++
++    /*
+        The routing mark requires CAP_NET_ADMIN, as opposed to the
+        CAP_NET_RAW which we are sometimes explicitly given.
+        If we don't have CAP_NET_ADMIN, this will fail, so we'll 
