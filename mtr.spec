@@ -163,6 +163,8 @@ Pakiet ten dostarcza bashowe uzupełnianie nazw dla mtra.
 #echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4
 %{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK_2_0],[$3])' >> acinclude.m4}
 
+echo %{version} > .tarball-version
+
 %build
 %{__aclocal}
 %{__autoheader}
