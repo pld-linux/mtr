@@ -135,6 +135,22 @@ mtr - це traceroute та ping в одному флаконі. При запу�
 з хопів для визначення якості лінка до кожної з машин. В ході цього
 процесу mtr виводить поточну статистику по кожній машині.
 
+%package -n bash-completion-mtr
+Summary:	bash-completion for mtr
+Summary(pl.UTF-8):	bashowe uzupełnianie nazw dla mtra
+Group:		Applications/Shells
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	bash-completion >= 2.0
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
+
+%description -n bash-completion-mtr
+This package provides bash-completion for mtr.
+
+%description -n bash-completion-mtr -l pl.UTF-8
+Pakiet ten dostarcza bashowe uzupełnianie nazw dla mtra.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -214,3 +230,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/mtr.desktop
 %{_pixmapsdir}/mtr.png
 %endif
+
+%files -n bash-completion-mtr
+%defattr(644,root,root,755)
+%{bash_compdir}/mtr
