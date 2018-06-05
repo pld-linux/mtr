@@ -1,0 +1,79 @@
+From 240725528c5a756ee9aaff247e3731f4b8517c06 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Arkadiusz=20Mi=C5=9Bkiewicz?= <arekm@maven.pl>
+Date: Tue, 5 Jun 2018 17:38:08 +0200
+Subject: [PATCH] mtr to a unreachable host is possible again.
+
+In mtr 0.87 it was possible to start mtr against unreachable
+host (that local kernel already knew that it is unreachable).
+Later it was broken. Make such tracing possible again.
+---
+ packet/probe.c | 28 +++++++++++++++++++++++-----
+ ui/net.c       | 10 ++++++++++
+ 2 files changed, 33 insertions(+), 5 deletions(-)
+
+diff --git a/packet/probe.c b/packet/probe.c
+index 27bf138..cf95f8a 100644
+--- a/packet/probe.c
++++ b/packet/probe.c
+@@ -356,14 +356,32 @@ int find_source_addr(
+         return -1;
+     }
+ 
+-    if (connect(sock, (struct sockaddr *) &dest_with_port, len)) {
+-        close(sock);
+-        return -1;
+-    }
++    if (connect(sock, (struct sockaddr *) &dest_with_port, len) == 0) {
++        if (getsockname(sock, (struct sockaddr *) srcaddr, &len)) {
++            close(sock);
++            return -1;
++        }
++    } else {
++#ifdef __linux__
++        /* Linux doesn't require source address, so we can support
++         * a case when mtr is run against unreachable host (that can become
++         * reachable) */
++        if (errno != EHOSTUNREACH) {
++            close(sock);
++            return -1;
++        }
+ 
+-    if (getsockname(sock, (struct sockaddr *) srcaddr, &len)) {
++        if (destaddr->ss_family == AF_INET6) {
++            srcaddr6 = (struct sockaddr_in6 *) srcaddr;
++            srcaddr6->sin6_addr = in6addr_any;
++        } else {
++            srcaddr4 = (struct sockaddr_in *) srcaddr;
++            srcaddr4->sin_addr.s_addr = INADDR_ANY;
++        }
++#else
+         close(sock);
+         return -1;
++#endif
+     }
+ 
+     close(sock);
+diff --git a/ui/net.c b/ui/net.c
+index 69d4477..11dd4c8 100644
+--- a/ui/net.c
++++ b/ui/net.c
+@@ -720,6 +720,16 @@ static void net_find_local_address(
+ 
+     if (connect
+         (udp_socket, (struct sockaddr *) &remote_sockaddr, addr_length)) {
++#ifdef __linux__
++        /* Linux doesn't require source address, so we can support
++         * a case when mtr is run against unreachable host (that can become
++         * reachable) */
++        if (errno == EHOSTUNREACH) {
++            close(udp_socket);
++            localaddr[0] = '\0';
++            return;
++        }
++#endif
+         error(EXIT_FAILURE, errno, "udp socket connect failed");
+     }
+ 
+-- 
+2.17.1
+

@@ -10,7 +10,7 @@ Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагности�
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
 Version:	0.92
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
@@ -24,6 +24,7 @@ Patch2:		%{name}-mtr6.patch
 Patch3:		%{name}-display.patch
 Patch4:		%{name}-curses-clear_colors.patch
 Patch5:		%{name}-sourceaddr_ipv4.patch
+Patch6:		0001-mtr-to-a-unreachable-host-is-possible-again.patch
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -159,6 +160,7 @@ Pakiet ten dostarcza bashowe uzupełnianie nazw dla mtra.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 #echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4
 %{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK_2_0],[$3])' >> acinclude.m4}
