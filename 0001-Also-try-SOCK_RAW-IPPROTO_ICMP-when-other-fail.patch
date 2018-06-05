@@ -1,0 +1,47 @@
+From 455ad8a2b11fea8a5f5ab1c8885860eea92d0c9c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Arkadiusz=20Mi=C5=9Bkiewicz?= <arekm@maven.pl>
+Date: Tue, 5 Jun 2018 15:54:44 +0200
+Subject: [PATCH] Also try SOCK_RAW/IPPROTO_ICMP when other fail.
+
+Under Linux Vserver SOCK_RAW is quite limited. Only IPPROTO_ICMP works,
+so try to use it.
+
+check_length_order() also doesn't work because sendto is also limited.
+Fortunately under linux check_length_order is not needed as described
+in comment around check_length_order.
+---
+ packet/probe_unix.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/packet/probe_unix.c b/packet/probe_unix.c
+index 56b670e..2804ecb 100644
+--- a/packet/probe_unix.c
++++ b/packet/probe_unix.c
+@@ -128,6 +128,12 @@ void check_length_order(
+     ssize_t bytes_sent;
+     int packet_size;
+ 
++#ifdef __linux__
++    /*  Linux will accept either byte order and check below fails to work
++     *  in some cases due to sendto() returning EPERM. */
++    return;
++#endif
++
+     memset(&param, 0, sizeof(struct probe_param_t));
+     param.ip_version = 4;
+     param.protocol = IPPROTO_ICMP;
+@@ -230,7 +236,10 @@ int open_ip4_sockets_raw(
+ 
+     send_socket = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
+     if (send_socket == -1) {
+-        return -1;
++        send_socket = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
++        if (send_socket == -1) {
++            return -1;
++        }
+     }
+ 
+     /*
+-- 
+2.17.1
+

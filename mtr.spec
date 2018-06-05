@@ -10,7 +10,7 @@ Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагности�
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
 Version:	0.92
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
@@ -19,7 +19,7 @@ Source0:	https://github.com/traviscross/mtr/archive/v%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-Makefile.patch
-
+Patch1:		0001-Also-try-SOCK_RAW-IPPROTO_ICMP-when-other-fail.patch
 Patch2:		%{name}-mtr6.patch
 Patch3:		%{name}-display.patch
 Patch4:		%{name}-curses-clear_colors.patch
@@ -154,7 +154,7 @@ Pakiet ten dostarcza bashowe uzupełnianie nazw dla mtra.
 %prep
 %setup -q
 %patch0 -p1
-
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
