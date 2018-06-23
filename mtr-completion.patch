@@ -1,0 +1,28 @@
+diff -ruNp mtr-0.92.orig/bash-completion/mtr mtr-0.92/bash-completion/mtr
+--- mtr-0.92.orig/bash-completion/mtr	2017-06-02 10:54:58.000000000 +0200
++++ mtr-0.92/bash-completion/mtr	2018-06-24 00:41:19.818077138 +0200
+@@ -1,4 +1,4 @@
+-_mtr_module()
++_mtr()
+ {
+   local cur prev OPTS
+   COMPREPLY=()
+@@ -12,7 +12,7 @@ _mtr_module()
+       return 0
+       ;;
+     '-a'|'--address')
+-      COMPREPLY=( $(compgen -W "ADDRESS" -- $cur) )
++      _ip_addresses
+       return 0
+       ;;
+     '-f'|'--first-ttl'|'-m'|'--max-ttl'|'-m'|'--max-unknown'|'-B'|'--bitpattern'|'-Q'|'--tos'|'-c'|'--report-cycles')
+@@ -62,7 +62,7 @@ _mtr_module()
+       return 0
+       ;;
+   esac
+-  COMPREPLY=( $(compgen -W "ip_address hostname" -- $cur) )
++  _known_hosts
+   return 0
+ }
+-complete -F _mtr_module mtr
++complete -F _mtr mtr
