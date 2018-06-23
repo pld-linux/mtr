@@ -1,18 +1,27 @@
 diff -ruNp mtr-0.92.orig/bash-completion/mtr mtr-0.92/bash-completion/mtr
 --- mtr-0.92.orig/bash-completion/mtr	2017-06-02 10:54:58.000000000 +0200
-+++ mtr-0.92/bash-completion/mtr	2018-06-24 00:41:19.818077138 +0200
-@@ -1,4 +1,4 @@
++++ mtr-0.92/bash-completion/mtr	2018-06-24 01:31:20.748948291 +0200
+@@ -1,9 +1,8 @@
 -_mtr_module()
 +_mtr()
  {
-   local cur prev OPTS
-   COMPREPLY=()
-@@ -12,7 +12,7 @@ _mtr_module()
+-  local cur prev OPTS
+-  COMPREPLY=()
+-  cur="${COMP_WORDS[COMP_CWORD]}"
+-  prev="${COMP_WORDS[COMP_CWORD-1]}"
++  local cur prev words cword;
++  _init_completion -n : || return;
++
+   case $prev in
+     '-F'|'--filename')
+       local IFS=$'\n'
+@@ -12,7 +11,8 @@ _mtr_module()
        return 0
        ;;
      '-a'|'--address')
 -      COMPREPLY=( $(compgen -W "ADDRESS" -- $cur) )
 +      _ip_addresses
++      __ltrim_colon_completions "$cur"
        return 0
        ;;
      '-f'|'--first-ttl'|'-m'|'--max-ttl'|'-m'|'--max-unknown'|'-B'|'--bitpattern'|'-Q'|'--tos'|'-c'|'--report-cycles')
