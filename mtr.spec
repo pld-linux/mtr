@@ -27,10 +27,11 @@ Patch5:		%{name}-sourceaddr_ipv4.patch
 Patch6:		0001-mtr-to-a-unreachable-host-is-possible-again.patch
 Patch7:		%{name}-completion.patch
 URL:		http://www.bitwizard.nl/mtr/
-BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.59
+BuildRequires:	automake >= 1:1.7.9
 BuildRequires:	glib2-devel >= 1:2.6.0
 %{?with_x:BuildRequires:	gtk+2-devel >= 2:2.6.0}
+BuildRequires:	libcap-devel
 BuildRequires:	ncurses-devel >= 5.2
 %{?with_x:BuildRequires:	pkgconfig}
 Obsoletes:	mtr-ncurses
@@ -138,8 +139,8 @@ mtr - це traceroute та ping в одному флаконі. При запу�
 процесу mtr виводить поточну статистику по кожній машині.
 
 %package -n bash-completion-mtr
-Summary:	bash-completion for mtr
-Summary(pl.UTF-8):	bashowe uzupełnianie nazw dla mtra
+Summary:	bash-completion for mtr command
+Summary(pl.UTF-8):	Bashowe uzupełnianie parametrów polecenia mtr
 Group:		Applications/Shells
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	bash-completion >= 2.0
@@ -148,10 +149,10 @@ BuildArch:	noarch
 %endif
 
 %description -n bash-completion-mtr
-This package provides bash-completion for mtr.
+This package provides bash-completion for mtr command.
 
 %description -n bash-completion-mtr -l pl.UTF-8
-Pakiet ten dostarcza bashowe uzupełnianie nazw dla mtra.
+Pakiet ten dostarcza bashowe uzupełnianie parametrów polecenia mtr.
 
 %prep
 %setup -q
@@ -164,9 +165,6 @@ Pakiet ten dostarcza bashowe uzupełnianie nazw dla mtra.
 %patch6 -p1
 %patch7 -p1
 
-#echo 'AC_DEFUN([AM_PATH_GTK],[$3])' >> acinclude.m4
-%{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK_2_0],[$3])' >> acinclude.m4}
-
 echo %{version} > .tarball-version
 
 %build
@@ -177,16 +175,18 @@ echo %{version} > .tarball-version
 
 %if %{with x}
 %configure \
+	--sbindir=%{_bindir} \
 	--with-gtk \
 	--enable-ipv6 \
 	--disable-silent-rules
 
 %{__make}
-mv -f mtr mtr-gtk
+%{__mv} mtr mtr-gtk
 %{__make} clean
 %endif
 
 %configure \
+	--sbindir=%{_bindir} \
 	--without-gtk \
 	--enable-ipv6 \
 	--disable-silent-rules
@@ -198,7 +198,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sbindir}
 
 %{__make} install \
-	sbindir=%{_bindir} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with x}
