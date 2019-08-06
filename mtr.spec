@@ -9,23 +9,20 @@ Summary(pt_BR.UTF-8):	Ferramenta para diagnóstico da rede, combinando ping/trac
 Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
-Version:	0.92
-Release:	4
+Version:	0.93
+Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
 Source0:	https://github.com/traviscross/mtr/archive/v%{version}.tar.gz
-# Source0-md5:	f764793302a6cee2bf1573b95db6f295
+# Source0-md5:	f68c397310ec2275736e2e19727c22c0
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-Makefile.patch
-Patch1:		0001-Also-try-SOCK_RAW-IPPROTO_ICMP-when-other-fail.patch
-Patch2:		%{name}-mtr6.patch
-Patch3:		%{name}-display.patch
-Patch4:		%{name}-curses-clear_colors.patch
-Patch5:		%{name}-sourceaddr_ipv4.patch
-Patch6:		0001-mtr-to-a-unreachable-host-is-possible-again.patch
-Patch7:		%{name}-completion.patch
+Patch1:		%{name}-mtr6.patch
+Patch2:		%{name}-display.patch
+Patch3:		%{name}-curses-clear_colors.patch
+Patch4:		%{name}-completion.patch
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.7.9
@@ -161,9 +158,6 @@ Pakiet ten dostarcza bashowe uzupełnianie parametrów polecenia mtr.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
 
 echo %{version} > .tarball-version
 
@@ -219,7 +213,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README SECURITY
+%doc AUTHORS FORMATS NEWS README.md SECURITY TODO
 %attr(755,root,root) %{_bindir}/mtr
 %attr(755,root,root) %{_bindir}/mtr6
 %attr(4755,root,root) %{_bindir}/mtr-packet
