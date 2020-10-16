@@ -14,6 +14,9 @@ Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
+#Source0Download: https://github.com/traviscross/mtr/releases
+# TODO: use named tarballs:
+#Source0:	https://github.com/traviscross/mtr/archive/v%{version}/%{name}-%{version}.tar.gz
 Source0:	https://github.com/traviscross/mtr/archive/v%{version}.tar.gz
 # Source0-md5:	258967ecd6658de02d327f8002d3da8f
 Source1:	%{name}.desktop
@@ -27,10 +30,11 @@ URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.7.9
 BuildRequires:	glib2-devel >= 1:2.6.0
-%{?with_x:BuildRequires:	gtk+2-devel >= 2:2.6.0}
+%{?with_x:BuildRequires:	gtk+3-devel >= 3.0}
+BuildRequires:	jansson-devel
 BuildRequires:	libcap-devel
 BuildRequires:	ncurses-devel >= 5.2
-%{?with_x:BuildRequires:	pkgconfig}
+BuildRequires:	pkgconfig
 Obsoletes:	mtr-ncurses
 Requires:	glib2 >= 1:2.6.0
 Requires(post):	/sbin/setcap
@@ -88,7 +92,6 @@ Summary(pt_BR.UTF-8):	Interface GTK+ para o mtr
 Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Group:		Networking/Utilities
-%{?with_x:Requires:	gtk+2 >= 2:2.6.0}
 Obsoletes:	mtr-gtk
 
 %description X11
