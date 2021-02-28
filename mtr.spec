@@ -144,9 +144,7 @@ Summary(pl.UTF-8):	Bashowe uzupełnianie parametrów polecenia mtr
 Group:		Applications/Shells
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	bash-completion >= 2.0
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description -n bash-completion-mtr
 This package provides bash-completion for mtr command.
