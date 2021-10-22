@@ -28,6 +28,7 @@ Patch3:		%{name}-curses-clear_colors.patch
 Patch4:		%{name}-completion.patch
 # https://github.com/TomHetmer/mtr/commit/19a1fbaf4efc232c4f4a29067297cf5c93fb2794.diff
 Patch5:		%{name}-sourceaddr_ipv4.patch
+Patch6:		%{name}-asn_print_fix.patch
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.7.9
@@ -162,6 +163,7 @@ Pakiet ten dostarcza bashowe uzupełnianie parametrów polecenia mtr.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 echo %{version} > .tarball-version
 

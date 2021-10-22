@@ -1,0 +1,21 @@
+diff -ruNp mtr-0.93.orig/ui/asn.c mtr-0.93/ui/asn.c
+--- mtr-0.93.orig/ui/asn.c	2019-08-03 10:31:26.000000000 +0200
++++ mtr-0.93/ui/asn.c	2021-10-23 01:31:30.733932177 +0200
+@@ -193,6 +193,8 @@ static char *split_txtrec(
+     if (i > ctl->ipinfo_max)
+         ctl->ipinfo_max = i;
+     if (ctl->ipinfo_no >= i) {
++        if (ctl->ipinfo_no >= ctl->ipinfo_max)
++            ctl->ipinfo_no = 0;
+         return (*items)[0];
+     } else
+         return (*items)[ctl->ipinfo_no];
+@@ -307,7 +309,7 @@ char *fmt_ipinfo(
+ int is_printii(
+     struct mtr_ctl *ctl)
+ {
+-    return (ctl->ipinfo_no >= 0);
++    return ((ctl->ipinfo_no >= 0) && (ctl->ipinfo_no != ctl->ipinfo_max));
+ }
+ 
+ void asn_open(
