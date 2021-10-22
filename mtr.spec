@@ -10,7 +10,7 @@ Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагности�
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
 Version:	0.94
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
@@ -26,6 +26,8 @@ Patch1:		%{name}-mtr6.patch
 Patch2:		%{name}-display.patch
 Patch3:		%{name}-curses-clear_colors.patch
 Patch4:		%{name}-completion.patch
+# https://github.com/TomHetmer/mtr/commit/19a1fbaf4efc232c4f4a29067297cf5c93fb2794.diff
+Patch5:		%{name}-sourceaddr_ipv4.patch
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.7.9
@@ -159,6 +161,7 @@ Pakiet ten dostarcza bashowe uzupełnianie parametrów polecenia mtr.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 echo %{version} > .tarball-version
 
