@@ -1,6 +1,5 @@
-diff -ruNp mtr-0.92.orig/bash-completion/mtr mtr-0.92/bash-completion/mtr
---- mtr-0.92.orig/bash-completion/mtr	2017-06-02 10:54:58.000000000 +0200
-+++ mtr-0.92/bash-completion/mtr	2018-06-24 01:31:20.748948291 +0200
+--- mtr-0.95/bash-completion/mtr.orig	2022-01-11 10:10:34.000000000 +0100
++++ mtr-0.95/bash-completion/mtr	2022-01-13 21:13:17.193803957 +0100
 @@ -1,9 +1,8 @@
 -_mtr_module()
 +_mtr()
@@ -15,21 +14,21 @@ diff -ruNp mtr-0.92.orig/bash-completion/mtr mtr-0.92/bash-completion/mtr
    case $prev in
      '-F'|'--filename')
        local IFS=$'\n'
-@@ -12,7 +11,8 @@ _mtr_module()
+@@ -12,7 +11,8 @@
        return 0
        ;;
      '-a'|'--address')
--      COMPREPLY=( $(compgen -W "ADDRESS" -- $cur) )
+-      COMPREPLY=( $(compgen -W "ADDRESS" -- "$cur") )
 +      _ip_addresses
 +      __ltrim_colon_completions "$cur"
        return 0
        ;;
-     '-f'|'--first-ttl'|'-m'|'--max-ttl'|'-m'|'--max-unknown'|'-B'|'--bitpattern'|'-Q'|'--tos'|'-c'|'--report-cycles')
-@@ -62,7 +62,7 @@ _mtr_module()
+     '-f'|'--first-ttl'|'-m'|'--max-ttl'|'-U'|'--max-unknown'|'-B'|'--bitpattern'|'-Q'|'--tos'|'-c'|'--report-cycles')
+@@ -62,7 +62,7 @@
        return 0
        ;;
    esac
--  COMPREPLY=( $(compgen -W "ip_address hostname" -- $cur) )
+-  COMPREPLY=( $(compgen -W "ip_address hostname" -- "$cur") )
 +  _known_hosts
    return 0
  }
