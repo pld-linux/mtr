@@ -1,9 +1,9 @@
---- mtr-0.92/ui/mtr.c~	2017-08-13 10:34:14.000000000 +0200
-+++ mtr-0.92/ui/mtr.c	2017-08-13 10:34:43.735191142 +0200
-@@ -715,7 +715,7 @@ int main(
-     ctl.probe_timeout = 10 * 1000000;
-     ctl.ipinfo_no = -1;
-     ctl.ipinfo_max = -1;
+--- mtr-0.96/ui/mtr.c~	2025-07-07 11:11:32.000000000 +0200
++++ mtr-0.96/ui/mtr.c	2025-07-07 11:12:26.032549015 +0200
+@@ -763,7 +763,7 @@ int main(
+ #endif
+ #endif
+ 
 -    xstrncpy(ctl.fld_active, "LS NABWV", 2 * MAXFLD);
 +    xstrncpy(ctl.fld_active, "LSR NABWV", 2 * MAXFLD);
  
