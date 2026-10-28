@@ -10,7 +10,7 @@ Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагности�
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Name:		mtr
 Version:	0.96
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
@@ -27,17 +27,16 @@ Patch2:		%{name}-display.patch
 Patch3:		%{name}-curses-clear_colors.patch
 Patch4:		%{name}-completion.patch
 Patch5:		%{name}-asn_print_fix.patch
+Patch6:		%{name}-CVE-2026-14461.patch
 URL:		http://www.bitwizard.nl/mtr/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.7.9
-BuildRequires:	glib2-devel >= 1:2.6.0
 %{?with_x:BuildRequires:	gtk+3-devel >= 3.0}
 BuildRequires:	jansson-devel
 BuildRequires:	libcap-devel
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	pkgconfig
 Obsoletes:	mtr-ncurses
-Requires:	glib2 >= 1:2.6.0
 Requires(post):	/sbin/setcap
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -93,6 +92,7 @@ Summary(pt_BR.UTF-8):	Interface GTK+ para o mtr
 Summary(ru.UTF-8):	Matt's Traceroute - утилита для диагностики сети
 Summary(uk.UTF-8):	Matt's Traceroute - утиліта для діагностики мережі
 Group:		Networking/Utilities
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	mtr-gtk
 
 %description X11
@@ -161,6 +161,7 @@ Pakiet ten dostarcza bashowe uzupełnianie parametrów polecenia mtr.
 %patch -P3 -p1
 %patch -P4 -p1
 %patch -P5 -p1
+%patch -P6 -p1
 
 echo %{version} > .tarball-version
 
